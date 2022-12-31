@@ -8,7 +8,7 @@ type Props = {};
 
 export const Nav: FC<Props> = () => {
   return (
-    <nav className="font-display m-auto p-8 w-full shadow-md">
+    <nav className="font-display m-auto px-8 py-6 w-full shadow-md sticky top-0 z-50 bg-white">
       <div className="flex justify-between items-center">
         <div className="flex w-1/6 px-6 items-center">
           <GiHamburgerMenu size={30} />
