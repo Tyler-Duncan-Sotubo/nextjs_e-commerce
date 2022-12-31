@@ -14,23 +14,23 @@ export const Nav: FC<Props> = () => {
           <GiHamburgerMenu size={30} />
           <h2 className="mx-4 text-2xl">CROYDON</h2>
         </div>
-        <div className="flex w-2/5 justify-center ">
-          <Link href="/">
-            <p className=" text-sm font-medium mr-12">Home</p>
-          </Link>
-          <Link href="/">
-            <p className=" text-sm font-medium mr-12">Shop</p>
-          </Link>
-          <Link href="/">
-            <p className=" text-sm font-medium mr-12">Womens</p>
-          </Link>
-          <Link href="/">
-            <p className=" text-sm font-medium mr-12">Mens</p>
-          </Link>
-          <Link href="/">
-            <p className=" text-sm font-medium mr-12">Todays Deals</p>
-          </Link>
-        </div>
+        <ul className="flex w-2/5 justify-center list-none">
+          <li className="text-sm font-medium mr-12">
+            <Link href="/">Home</Link>
+          </li>
+          <li className="text-sm font-medium mr-12">
+            <Link href="/">Shop</Link>
+          </li>
+          <li className="text-sm font-medium mr-12">
+            <Link href="/">Womens</Link>
+          </li>
+          <li className="text-sm font-medium mr-12">
+            <Link href="/">Mens</Link>
+          </li>
+          <li className="text-sm font-medium mr-12">
+            <Link href="/">Todays Deals</Link>
+          </li>
+        </ul>
         <div className="flex justify-between w-1/6 px-6">
           <MdSearch size={18} />
           <MdPerson size={18} />

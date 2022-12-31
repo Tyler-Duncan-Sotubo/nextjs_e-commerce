@@ -1,10 +1,11 @@
 import Layout from "../components/Layout";
+import { Slider } from "../components/Slider";
 
 export default function Home() {
   return (
     <>
       <Layout title="Hello">
-        <h1>Welcome</h1>
+        <Slider />
       </Layout>
     </>
   );
