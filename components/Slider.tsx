@@ -1,12 +1,20 @@
 import Link from "next/link";
 import React, { FC, useState } from "react";
 import { BsChevronLeft, BsChevronRight, BsDot } from "react-icons/bs";
-import { useSelector } from "react-redux";
-import { getSlideSelector } from "../redux/reducer/sliderItemReducer";
 
-export const Slider: FC = () => {
+type Props = {
+  allSlides: [
+    {
+      id: string;
+      name: string;
+      url: string;
+    }
+  ];
+};
+
+export const Slider: FC<Props> = ({ allSlides }) => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);
-  const slides = useSelector(getSlideSelector);
+  const slides = allSlides;
 
   const nextSlide = () => {
     const currentSlide = currentSlideIndex === slides.length - 1;
@@ -27,7 +35,7 @@ export const Slider: FC = () => {
     <div className=" max-w-full h-[720px] w-full relative m-auto group">
       <div
         style={{ backgroundImage: `url(${slides[currentSlideIndex].url})` }}
-        className="w-full h-full bg-center bg-cover duration-1000">
+        className="w-full h-full bg-center bg-cover duration-500">
         <p className="text-4xl w-[350px] leading-[50px] font-display text-white absolute top-[+45%] translate-x-0 translate-y-[-45%] left-[10%] cursor-pointer">
           {slides[currentSlideIndex].name}
         </p>
@@ -48,7 +56,7 @@ export const Slider: FC = () => {
         <BsChevronRight size={60} />
       </div>
       <div className="flex py-2 absolute top-[+95%] translate-x-[-60%] translate-y-[-95%] left-[+60%] cursor-pointer">
-        {slides.map((item, slideIndex) => (
+        {slides.map((item: any, slideIndex: any) => (
           <div
             className="w-[10%]"
             onClick={() => gotToIndex(slideIndex)}
