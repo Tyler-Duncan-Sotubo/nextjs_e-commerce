@@ -17,7 +17,7 @@ export default function Home() {
     <>
       <Layout title="Hello">
         <Slider allSlides={allSlides} />
-        <div className="grid grid-cols-1 gap-6 p-20 md:grid-cols-3 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 px-28 py-10 md:grid-cols-3 lg:grid-cols-3">
           {data.products.map((product) => (
             <ProductItem product={product} key={product.slug} />
           ))}

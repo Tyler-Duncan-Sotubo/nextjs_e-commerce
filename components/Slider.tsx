@@ -40,9 +40,9 @@ export const Slider: FC<Props> = ({ allSlides }) => {
           {slides[currentSlideIndex].name}
         </p>
         <Link href="/">
-          <p className="text-lg font-display uppercase bg-violet-600 text-white inline-block px-8 py-2 absolute top-[+60%] translate-x-0 translate-y-[-60%] left-[10%] cursor-pointer">
+          <button type="button" className="primary-button">
             Shop Now
-          </p>
+          </button>
         </Link>
       </div>
       <div
