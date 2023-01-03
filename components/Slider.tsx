@@ -32,7 +32,7 @@ export const Slider: FC<Props> = ({ allSlides }) => {
   };
 
   return (
-    <div className=" max-w-full h-[720px] w-full relative m-auto group">
+    <div className="h-[700px] relative m-auto group">
       <div
         style={{ backgroundImage: `url(${slides[currentSlideIndex].url})` }}
         className="w-full h-full bg-center bg-cover duration-500">

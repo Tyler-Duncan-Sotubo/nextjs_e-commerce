@@ -5,20 +5,23 @@ import { getDocs, collection } from "firebase/firestore";
 import { wrapper } from "../redux/store/store";
 import { useSelector } from "react-redux";
 import { setSlideData, slideSelector } from "../redux/reducer/slides";
-import { setProductData } from "../redux/reducer/products";
+import data from "../utils/data";
+import ProductItem from "../components/ProductItem";
 
 export default function Home() {
   const initialData = useSelector(slideSelector);
-  // const ProductData = useSelector(getProductSelector);
-  const [data] = initialData;
-  const allSlides = data.slide[0];
-
-  console.log(data.product);
+  const [slideData] = initialData;
+  const allSlides = slideData.slide[0];
 
   return (
     <>
       <Layout title="Hello">
         <Slider allSlides={allSlides} />
+        <div className="grid grid-cols-1 gap-6 p-20 md:grid-cols-3 lg:grid-cols-3">
+          {data.products.map((product) => (
+            <ProductItem product={product} key={product.slug} />
+          ))}
+        </div>
       </Layout>
     </>
   );
@@ -31,18 +34,10 @@ export const getServerSideProps = wrapper.getServerSideProps(
     querySnapshot.forEach((lyrics) => {
       data.push({ id: lyrics.id, ...lyrics.data() });
     });
-
-    const products: any = [];
-    const getProducts = await getDocs(collection(db, "Products"));
-    getProducts.forEach((lyrics) => {
-      products.push({ id: lyrics.id, ...lyrics.data() });
-    });
-
     store.dispatch(setSlideData(data));
-    store.dispatch(setProductData(products));
 
     return {
-      props: { data },
+      props: {},
     };
   }
 );

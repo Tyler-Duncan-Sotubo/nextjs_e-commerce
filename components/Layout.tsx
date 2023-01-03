@@ -20,7 +20,7 @@ const Layout: FC<Props> = ({ title, children }) => (
       <header className="sticky top-0 z-50">
         <Nav />
       </header>
-      <main className="relative">{children}</main>
+      <main>{children}</main>
       <footer>
         <Footer />
       </footer>
