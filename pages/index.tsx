@@ -4,21 +4,21 @@ import { db } from "../firebase";
 import { getDocs, collection } from "firebase/firestore";
 import { wrapper } from "../redux/store/store";
 import { useSelector } from "react-redux";
-import { setSlideData, slideSelector } from "../redux/reducer/slides";
-import data from "../utils/data";
+import { setSlideData } from "../redux/reducer/slides";
 import ProductItem from "../components/ProductItem";
+import { getProductSelector } from "../redux/reducer/products";
 
 export default function Home() {
-  const initialData = useSelector(slideSelector);
-  const [slideData] = initialData;
-  const allSlides = slideData.slide[0];
+  const product = useSelector(getProductSelector);
+  const productData = product[0].product;
+  const slidesData = product[0].slide[0];
 
   return (
     <>
       <Layout title="Hello">
-        <Slider allSlides={allSlides} />
+        <Slider allSlides={slidesData} />
         <div className="grid grid-cols-1 gap-6 px-28 py-10 md:grid-cols-3 lg:grid-cols-3">
-          {data.products.map((product) => (
+          {productData.map((product: any) => (
             <ProductItem product={product} key={product.slug} />
           ))}
         </div>
