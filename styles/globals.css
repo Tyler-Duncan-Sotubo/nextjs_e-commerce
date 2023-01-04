@@ -10,3 +10,7 @@
 .primary-button {
   @apply text-lg font-display uppercase bg-violet-600 text-white inline-block px-8 py-2 absolute top-[+60%] translate-x-0 translate-y-[-60%] left-[10%] cursor-pointer;
 }
+
+.size-text {
+  @apply text-2xl mr-6 font-light;
+}

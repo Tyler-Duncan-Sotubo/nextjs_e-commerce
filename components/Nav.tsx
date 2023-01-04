@@ -12,7 +12,9 @@ export const Nav: FC<Props> = () => {
       <div className="flex justify-between items-center">
         <div className="flex w-1/6 px-6 items-center">
           <GiHamburgerMenu size={30} />
-          <h2 className="mx-4 text-2xl">CROYDON</h2>
+          <Link href="/">
+            <h2 className="mx-4 text-2xl">CROYDON</h2>
+          </Link>
         </div>
         <ul className="flex w-2/5 justify-center list-none">
           <li className="text-sm font-medium mr-12">

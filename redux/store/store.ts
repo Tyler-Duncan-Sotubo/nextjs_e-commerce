@@ -3,11 +3,13 @@ import products from "../reducer/products";
 import { Action } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import slides from "../reducer/slides";
+import cartReducer from "../reducer/cartSlice";
 
 const makeStore = () => configureStore({
     reducer: {
         product: products,
-        slide:slides
+        slide: slides,
+        cart:cartReducer
     },
     devTools:true
 })

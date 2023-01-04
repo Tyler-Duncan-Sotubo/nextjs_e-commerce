@@ -32,7 +32,7 @@ export const Slider: FC<Props> = ({ allSlides }) => {
   };
 
   return (
-    <div className="h-[700px] relative m-auto group">
+    <div className="h-[650px] relative m-auto group">
       <div
         style={{ backgroundImage: `url(${slides[currentSlideIndex].url})` }}
         className="w-full h-full bg-center bg-cover duration-500">
@@ -55,7 +55,7 @@ export const Slider: FC<Props> = ({ allSlides }) => {
         className="hidden group-hover:block absolute top-[+50%] translate-x-0 translate-y-[-50%] right-5 cursor-pointer  text-violet-200 hover:text-violet-600">
         <BsChevronRight size={60} />
       </div>
-      <div className="flex py-2 absolute top-[+95%] translate-x-[-60%] translate-y-[-95%] left-[+60%] cursor-pointer">
+      <div className="flex py-2 absolute top-[+95%] translate-x-[-55%] translate-y-[-95%] left-[+55%] cursor-pointer">
         {slides.map((item: any, slideIndex: any) => (
           <div
             className="w-[10%]"
