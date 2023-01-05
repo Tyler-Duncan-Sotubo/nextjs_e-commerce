@@ -27,8 +27,8 @@ const ProductPage: FC = () => {
   return (
     <div>
       <Layout title={product.name}>
-        <div className="w-[80%] m-auto my-10 gap-5 font-display">
-          <div className="flex gap-2">
+        <div className="w-[85%] m-auto my-10 gap-5 font-display">
+          <div className="flex gap-2 my-10">
             <Link href="/">
               <p className="text-md">Home</p>
             </Link>
@@ -37,9 +37,9 @@ const ProductPage: FC = () => {
             </Link>
             <p className="text-md">{product?.name}</p>
           </div>
-          <div className="flex my-10 gap-5">
-            <div className="relative overflow-hidden">
-              <div className="relative group">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xs:grid-cols-1 lg:grid-cols-2 w-full">
+            <div className="relative col-span-1">
+              <div className="relative">
                 <Image
                   src={product.images![currentIndex].image}
                   width={650}
@@ -60,7 +60,7 @@ const ProductPage: FC = () => {
                 ))}
               </div>
             </div>
-            <div className="w-2/3">
+            <div className="col-span-1">
               <p>
                 {product?.rating} of {product?.numReviews} Reviews
               </p>

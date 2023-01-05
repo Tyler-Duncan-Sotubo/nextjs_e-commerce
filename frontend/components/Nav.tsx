@@ -51,9 +51,11 @@ export const Nav: FC<Props> = ({ setModalVisible }) => {
             className="flex cursor-pointer relative">
             <FaShoppingCart size={18} className="mr-1" />
             <div className="absolute top-[-5px] right-[-15px] bg-red-600 w-4 rounded-[50%] text-center">
-              <p className="text-xs font-bold text-white">
-                {cartCount.cartTotalQuantity}
-              </p>
+              {cartCount.cartTotalQuantity > 0 ? (
+                <p className="text-xs font-bold text-white">
+                  {cartCount.cartTotalQuantity}
+                </p>
+              ) : null}
             </div>
           </div>
         </div>
