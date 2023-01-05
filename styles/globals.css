@@ -12,5 +12,5 @@
 }
 
 .size-text {
-  @apply text-2xl mr-6 font-light;
+  @apply text-xl mr-2 font-light border-2 p-2 w-10 text-center cursor-pointer;
 }

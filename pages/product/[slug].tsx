@@ -26,7 +26,7 @@ const ProductPage: FC = () => {
 
   return (
     <div>
-      <Layout title={product?.name}>
+      <Layout title={product.name}>
         <div className="w-[80%] m-auto my-10 gap-5 font-display">
           <div className="flex gap-2">
             <Link href="/">
@@ -64,12 +64,12 @@ const ProductPage: FC = () => {
               <p>
                 {product?.rating} of {product?.numReviews} Reviews
               </p>
-              <p className="text-2xl font-semibold my-2">{product?.name}</p>
-              <p className="text-md font-medium my-4">£{product?.price}.00</p>
-              <p className="text-[13px] my-2">
+              <p className="text-2xl font-semibold my-5">{product?.name}</p>
+              <p className="text-md font-medium my-5">£{product?.price}.00</p>
+              <p className="text-[13px] my-5 ">
                 {product?.description.substring(0, 310)}
               </p>
-              <div className="flex justify-between my-4 items-center w-40">
+              <div className="flex justify-between my-6 items-center w-32">
                 <p className="text-md mr-16 capitalize font-semibold">size</p>
                 <div className="flex item-center">
                   <p className="size-text">M</p>
@@ -77,17 +77,16 @@ const ProductPage: FC = () => {
                   <p className="size-text">XL</p>
                 </div>
               </div>
-              <div className="flex justify-between my-4 items-center w-40">
+              <div className="flex justify-between my-5 items-center w-40 ">
                 <p className="text-md capitalize font-semibold">Status</p>
                 <div>
                   {product.countInStock > 0 ? "In Stock" : "Unavailable"}
                 </div>
               </div>
-
               <button
                 onClick={() => handleAddToCart(product)}
                 type="button"
-                className="text-lg font-display uppercase hover:bg-violet-500 bg-violet-600 text-white inline-block px-8 py-2 cursor-pointer">
+                className="text-lg my-5 font-display uppercase hover:bg-violet-500 bg-violet-600 text-white inline-block px-8 py-2 cursor-pointer">
                 Add to Cart
               </button>
             </div>

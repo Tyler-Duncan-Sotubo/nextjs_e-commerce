@@ -1,14 +1,21 @@
+/* eslint-disable no-unused-vars */
 import Link from "next/link";
 import React, { FC } from "react";
 import { FaRegHeart, FaShoppingCart } from "react-icons/fa";
 import { MdPerson, MdSearch } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useSelector } from "react-redux";
+import { cartSelector } from "../redux/reducer/cartSlice";
 
-type Props = {};
+interface Props {
+  setModalVisible: (boolean: any) => void;
+}
 
-export const Nav: FC<Props> = () => {
+export const Nav: FC<Props> = ({ setModalVisible }) => {
+  const cartCount = useSelector(cartSelector);
+
   return (
-    <nav className="font-display m-auto px-8 py-6 w-full shadow-md sticky top-0 z-50 bg-white">
+    <nav className="font-display m-auto px-8 py-6 w-full shadow-md sticky top-0 z-5 bg-white">
       <div className="flex justify-between items-center">
         <div className="flex w-1/6 px-6 items-center">
           <GiHamburgerMenu size={30} />
@@ -37,7 +44,18 @@ export const Nav: FC<Props> = () => {
           <MdSearch size={18} />
           <MdPerson size={18} />
           <FaRegHeart size={18} />
-          <FaShoppingCart size={18} />
+          <div
+            onClick={() => {
+              setModalVisible(true);
+            }}
+            className="flex cursor-pointer relative">
+            <FaShoppingCart size={18} className="mr-1" />
+            <div className="absolute top-[-5px] right-[-15px] bg-red-600 w-4 rounded-[50%] text-center">
+              <p className="text-xs font-bold text-white">
+                {cartCount.cartTotalQuantity}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
