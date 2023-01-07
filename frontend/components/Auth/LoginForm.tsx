@@ -2,6 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
+import { authSelector, loginUser } from "../../redux/reducer/AuthSlice";
 
 type UserSubmitForm = {
   email: string;
@@ -27,8 +29,11 @@ const LoginForm = () => {
     resolver: yupResolver(validationSchema),
   });
 
+  const dispatch = useDispatch()<any>;
+  const auth = useSelector(authSelector);
+
   const onSubmit = (data: UserSubmitForm) => {
-    console.log(JSON.stringify(data, null, 2));
+    dispatch(loginUser(data));
   };
 
   return (
@@ -37,10 +42,10 @@ const LoginForm = () => {
         <h1 className="text-3xl">Login</h1>
         <h1 className="mb-16 mt-5">Great to have you back!</h1>
         <div className="mb-8">
-          <label htmlFor="email"></label>
+          <label htmlFor="loginemail"></label>
           <input
             type="email"
-            id="email"
+            id="loginemail"
             className="input"
             placeholder="username or email address"
             {...register("email")}
@@ -52,10 +57,10 @@ const LoginForm = () => {
           )}
         </div>
         <div className="mb-8">
-          <label htmlFor="password"></label>
+          <label htmlFor="loginpassword"></label>
           <input
             type="password"
-            id="password"
+            id="loginpassword"
             className="input"
             autoFocus
             placeholder="password"
@@ -71,6 +76,11 @@ const LoginForm = () => {
           className="bg-violet-600 w-[40%] text-white py-3 my-6 font-display uppercase font-semibold hover:bg-violet-500">
           Login
         </button>
+        {auth.loginStatus === "rejected" ? (
+          <div className="text-red-500">
+            <p>{auth.loginError}</p>
+          </div>
+        ) : null}
         <p className="mt-5">Remember Me</p>
         <p className="mt-5">Lost your password ?</p>
       </div>

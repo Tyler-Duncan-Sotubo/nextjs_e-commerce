@@ -5,6 +5,7 @@ import { createWrapper } from "next-redux-wrapper";
 import slides from "../reducer/slides";
 import cartReducer from "../reducer/cartSlice";
 import { productApi } from "../../modules/productsApi";
+import authReducer from "../reducer/AuthSlice";
 
 const makeStore = () =>
   configureStore({
@@ -12,6 +13,7 @@ const makeStore = () =>
       product: products,
       slide: slides,
       cart: cartReducer,
+      auth: authReducer,
       [productApi.reducerPath]: productApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>

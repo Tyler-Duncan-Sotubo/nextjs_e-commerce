@@ -13,6 +13,8 @@ export default function Home() {
   const product = useSelector(getProductSelector);
   const slidesData = product[0].slide[0];
 
+  console.log(product);
+
   const { data } = useGetAllProductsQuery();
 
   return (

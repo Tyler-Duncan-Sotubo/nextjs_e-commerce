@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
+import { authSelector, registerUser } from "../../redux/reducer/AuthSlice";
 
 type UserSubmitForm = {
   email: string;
   password: string;
+  name: string;
 };
 
 const RegisterForm = () => {
   const validationSchema = Yup.object().shape({
+    name: Yup.string()
+      .required("Name is required")
+      .min(3, "Name must be at least 6 characters")
+      .max(40, "Name must not exceed 40 characters"),
     email: Yup.string()
       .required("Email is required")
       .email("Please enter valid Email Address"),
@@ -27,8 +35,20 @@ const RegisterForm = () => {
     resolver: yupResolver(validationSchema),
   });
 
+  const dispatch = useDispatch()<any>;
+
+  let router = useRouter();
+
+  const auth = useSelector(authSelector);
+
+  useEffect(() => {
+    if (auth._id) {
+      router.push("/welcome");
+    }
+  }, [auth, router]);
+
   const onSubmit = (data: UserSubmitForm) => {
-    console.log(JSON.stringify(data, null, 2));
+    dispatch(registerUser(data));
   };
 
   return (
@@ -39,12 +59,27 @@ const RegisterForm = () => {
           If you don’t have an account, register now!
         </h1>
         <div className="mb-8">
+          <label htmlFor="name"></label>
+          <input
+            type="name"
+            id="name"
+            className="input"
+            autoFocus
+            placeholder="Username"
+            {...register("name")}></input>
+          {errors.name && (
+            <div className="text-red-500 text-left mt-3">
+              {errors.name.message}
+            </div>
+          )}
+        </div>
+        <div className="mb-8">
           <label htmlFor="email"></label>
           <input
             type="email"
             id="email"
             className="input"
-            placeholder="username or email address"
+            placeholder="email address"
             {...register("email")}
           />
           {errors.email && (
@@ -73,6 +108,11 @@ const RegisterForm = () => {
           className="bg-violet-600 w-[40%] text-white py-3 my-6 font-display uppercase font-semibold hover:bg-violet-500">
           Register
         </button>
+        {auth.registerStatus === "rejected" ? (
+          <div className="text-red-500">
+            <p>{auth.registerError}</p>
+          </div>
+        ) : null}
       </div>
     </form>
   );

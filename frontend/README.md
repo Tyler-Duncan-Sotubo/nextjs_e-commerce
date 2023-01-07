@@ -5,12 +5,14 @@
 3. React JS
 4. TypeScript
 
-- Cart Page
-- Login Form
-- login Functionality With MongoDB
+- Cart Page - Done
+- Login Form - Done
+- Register Form - Done
+- Connect Mongo DB to backend
+- login Functionality With MongoDB - Done
+- Loading Product from Mongo DB
 - Shipping Page
 - Payment Page
-- Loading Product from external API
 - Order Screen
 - Order History Screen
 - Deploy

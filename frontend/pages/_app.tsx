@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { getTotals, cartSelector } from "../redux/reducer/cartSlice";
+import { getUser } from "../redux/reducer/AuthSlice";
 
 function App({ Component, pageProps }: AppProps) {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     dispatch(getTotals());
+    dispatch(getUser());
   }, [cartItems, dispatch]);
 
   return (
