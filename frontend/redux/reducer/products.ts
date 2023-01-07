@@ -1,10 +1,10 @@
 import { createSlice} from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
-import data from "../../utils/data";
+// import data from "../../utils/data";
 import { AppState} from "../store/store";
 
 
-const initialState = data.products;
+const initialState:any = [];
 
 export const ProductSlice = createSlice({
     name: "product",

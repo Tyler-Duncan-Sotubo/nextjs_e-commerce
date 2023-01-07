@@ -7,20 +7,23 @@ import { useSelector } from "react-redux";
 import { setSlideData } from "../redux/reducer/slides";
 import ProductItem from "../components/ProductItem";
 import { getProductSelector } from "../redux/reducer/products";
+import { useGetAllProductsQuery } from "../modules/productsApi";
 
 export default function Home() {
   const product = useSelector(getProductSelector);
-  const productData = product[0].product;
   const slidesData = product[0].slide[0];
+
+  const { data } = useGetAllProductsQuery();
 
   return (
     <>
       <Layout title="Hello">
         <Slider allSlides={slidesData} />
         <div className="grid grid-cols-1 gap-6 px-28 py-10 md:grid-cols-3 lg:grid-cols-3">
-          {productData.map((product: any) => (
-            <ProductItem product={product} key={product.slug} />
-          ))}
+          {data &&
+            data?.map((product: any) => (
+              <ProductItem product={product} key={product.slug} />
+            ))}
         </div>
       </Layout>
     </>

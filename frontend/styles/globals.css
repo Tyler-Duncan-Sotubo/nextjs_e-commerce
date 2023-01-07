@@ -14,3 +14,7 @@
 .size-text {
   @apply text-xl mr-2 font-light border-2 p-2 w-10 text-center cursor-pointer;
 }
+
+.input {
+  @apply w-full outline-none border-b-2 py-4 font-display capitalize hover:border-black bg-transparent;
+}

@@ -40,9 +40,11 @@ export const Nav: FC<Props> = ({ setModalVisible }) => {
             <Link href="/">Todays Deals</Link>
           </li>
         </ul>
-        <div className="flex justify-between w-1/6 px-6">
-          <MdSearch size={18} />
-          <MdPerson size={18} />
+        <div className="flex justify-between items-center w-1/6 px-6">
+          <MdSearch size={20} />
+          <Link href="/login-register">
+            <MdPerson size={25} />
+          </Link>
           <FaRegHeart size={18} />
           <div
             onClick={() => {

@@ -4,18 +4,28 @@ import { Action } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import slides from "../reducer/slides";
 import cartReducer from "../reducer/cartSlice";
+import { productApi } from "../../modules/productsApi";
 
-const makeStore = () => configureStore({
+const makeStore = () =>
+  configureStore({
     reducer: {
-        product: products,
-        slide: slides,
-        cart:cartReducer
+      product: products,
+      slide: slides,
+      cart: cartReducer,
+      [productApi.reducerPath]: productApi.reducer,
     },
-    devTools:true
-})
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(productApi.middleware),
+    devTools: true,
+  });
 
-export type AppStore = ReturnType<typeof makeStore>
-export type AppState = ReturnType<AppStore['getState']>
-export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppState, unknown, Action>
+export type AppStore = ReturnType<typeof makeStore>;
+export type AppState = ReturnType<AppStore["getState"]>;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  AppState,
+  unknown,
+  Action
+>;
 
-export const wrapper = createWrapper<AppStore>(makeStore)
+export const wrapper = createWrapper<AppStore>(makeStore);
