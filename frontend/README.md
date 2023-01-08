@@ -8,9 +8,9 @@
 - Cart Page - Done
 - Login Form - Done
 - Register Form - Done
-- Connect Mongo DB to backend
+- Connect Mongo DB to backend - Done
 - login Functionality With MongoDB - Done
-- Loading Product from Mongo DB
+- Loading Product from Mongo DB - Done
 - Shipping Page
 - Payment Page
 - Order Screen

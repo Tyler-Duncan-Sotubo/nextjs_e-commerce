@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppState } from "../store/store";
 import { toast } from "react-toastify";
 
@@ -84,7 +84,7 @@ const cartReducer = createSlice({
             localStorage.setItem('cartItems', JSON.stringify(state.cartItem))
         },
         // eslint-disable-next-line no-unused-vars
-        getTotals(state, action) {
+        getTotals(state, action:PayloadAction) {
       let { total, quantity } = state.cartItem.reduce(
         (cartTotal, cartItem) => {
           const { price, cartQuantity } = cartItem;

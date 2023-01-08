@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { url } from "./api";
 import jwtDecode from "jwt-decode";
@@ -87,7 +87,7 @@ const authReducer = createSlice({
   initialState,
   reducers: {
     // eslint-disable-next-line no-unused-vars
-    getUser(state, action): any {
+    getUser(state, action:PayloadAction):any {
       const token = state.token;
       if (token) {
         const user:any = jwtDecode(token);
@@ -101,7 +101,7 @@ const authReducer = createSlice({
       }
     },
     // eslint-disable-next-line no-unused-vars
-    logOutUser(state, action): any {
+    logOutUser(state, action:PayloadAction):any {
       localStorage.removeItem("token");
       return {
         ...state,

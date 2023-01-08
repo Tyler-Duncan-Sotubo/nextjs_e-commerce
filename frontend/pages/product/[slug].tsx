@@ -44,7 +44,7 @@ const ProductPage: FC = () => {
               <div className="relative col-span-1">
                 <div className="relative">
                   <Image
-                    src={product.images![currentIndex].image}
+                    src={product.images![currentIndex].img}
                     width={650}
                     height={500}
                     alt={product?.name}
@@ -54,7 +54,7 @@ const ProductPage: FC = () => {
                   {product.images?.map((item: any, index: any) => (
                     <div key={index} onClick={() => gotToIndex(index)}>
                       <Image
-                        src={item.image}
+                        src={item.img}
                         width={150}
                         height={20}
                         alt={product?.name}

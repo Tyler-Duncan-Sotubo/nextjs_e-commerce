@@ -8,12 +8,11 @@ import { setSlideData } from "../redux/reducer/slides";
 import ProductItem from "../components/ProductItem";
 import { getProductSelector } from "../redux/reducer/products";
 import { useGetAllProductsQuery } from "../modules/productsApi";
+import axios from "axios";
 
 export default function Home() {
   const product = useSelector(getProductSelector);
   const slidesData = product[0].slide[0];
-
-  console.log(product);
 
   const { data } = useGetAllProductsQuery();
 
@@ -41,8 +40,11 @@ export const getServerSideProps = wrapper.getServerSideProps(
     });
     store.dispatch(setSlideData(data));
 
+    const res = await axios.get("http://localhost:1000/api/products");
+    const checkData = res.data;
+
     return {
-      props: {},
+      props: { checkData },
     };
   }
 );

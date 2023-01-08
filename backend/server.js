@@ -3,25 +3,14 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const register = require("./routes/register");
 const login = require("./routes/login");
-
-const products = require("./products");
+const { Product } = require("./models/products");
+const postProduct = require("./routes/productPost");
 
 require("dotenv").config();
 
 const app = express();
 app.use(express.json());
 app.use(cors());
-
-app.use("/api/register", register);
-app.use("/api/login", login);
-
-app.get("/", (req, res) => {
-  res.send("Welcome to our online Shop API");
-});
-
-app.get("/products", (req, res) => {
-  res.send(products);
-});
 
 const port = process.env.PORT || 1000;
 const uri = process.env.MONGODB_URI;
@@ -36,3 +25,21 @@ mongoose
   })
   .then(() => console.log("Mongo DB connect succesful"))
   .catch((error) => console.log("Mongo DB connect succesful", error));
+
+app.use("/api/register", register);
+app.use("/api/login", login);
+app.use("/post/products", postProduct);
+
+app.get("/", (req, res) => {
+  res.send("Welcome to our online Shop API");
+});
+
+app.get("/api/products", (req, res) => {
+  Product.find()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
