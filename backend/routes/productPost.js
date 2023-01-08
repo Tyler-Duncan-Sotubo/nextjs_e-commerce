@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   let product = new Product({
+    featuredImg: req.body.featuredImg,
     name: req.body.name,
     slug: req.body.slug,
     category: req.body.category,

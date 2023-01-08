@@ -20,7 +20,7 @@ export const Nav: FC<Props> = ({ setModalVisible }) => {
   return (
     <nav className="font-display m-auto px-8 py-6 w-full shadow-md sticky top-0 z-5 bg-white">
       <div className="flex justify-between items-center">
-        <div className="flex w-1/6 px-6 items-center">
+        <div className="flex w-1/6 px-5 items-center">
           <GiHamburgerMenu size={30} />
           <Link href="/">
             <h2 className="mx-4 text-2xl">CROYDON</h2>
@@ -44,10 +44,10 @@ export const Nav: FC<Props> = ({ setModalVisible }) => {
           </li>
         </ul>
         {auth._id ? (
-          <div className="flex justify-between items-center w-2/6 px-6">
-            <div>{auth.name}</div>
+          <div className="flex justify-between items-center w-1/6 pr-4">
+            {/* <div className="cursor-pointer text-[13px]">hello, {auth.name}</div> */}
             <div
-              className="cursor-pointer"
+              className="cursor-pointer text-sm"
               onClick={() => {
                 dispatch(logOutUser());
               }}>

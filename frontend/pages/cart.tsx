@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import Layout from "../components/Layout";
@@ -18,6 +19,7 @@ import {
 } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { MdClose } from "react-icons/md";
+import { authSelector } from "../redux/reducer/AuthSlice";
 
 type Props = {};
 
@@ -39,6 +41,17 @@ const Cart: FC<Props> = () => {
 
   const clearAllCart = () => {
     dispatch(clearCart());
+  };
+
+  const auth = useSelector(authSelector);
+
+  let router = useRouter();
+  const handleCheckOut = () => {
+    if (auth._id) {
+      router.push("/checkout");
+    } else {
+      router.push("/login-register");
+    }
   };
 
   return (
@@ -170,6 +183,9 @@ const Cart: FC<Props> = () => {
                   Taxes and shipping calculated at checkout
                 </p>
                 <button
+                  onClick={() => {
+                    handleCheckOut();
+                  }}
                   type="button"
                   className="bg-violet-600 w-[100%] text-white py-3 my-2 font-display uppercase font-semibold hover:bg-violet-500">
                   Proceed to Checkout

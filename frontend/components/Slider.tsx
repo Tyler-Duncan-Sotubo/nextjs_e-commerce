@@ -3,18 +3,27 @@ import React, { FC, useState } from "react";
 import { BsChevronLeft, BsChevronRight, BsDot } from "react-icons/bs";
 
 type Props = {
-  allSlides: [
+  data: [
     {
       id: string;
       name: string;
       url: string;
+      featuredImg: string;
+      tag: string;
     }
   ];
 };
 
-export const Slider: FC<Props> = ({ allSlides }) => {
+export const Slider: FC<Props> = ({ data }) => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);
-  const slides = allSlides;
+
+  const featuredSlide = data.filter((item) => {
+    if (item.tag.includes("featured")) {
+      return item;
+    }
+  });
+
+  const slides = featuredSlide;
 
   const nextSlide = () => {
     const currentSlide = currentSlideIndex === slides.length - 1;
@@ -32,9 +41,11 @@ export const Slider: FC<Props> = ({ allSlides }) => {
   };
 
   return (
-    <div className="h-[650px] relative m-auto group">
+    <div className="w-[1220px] h-[650px] relative m-auto group mt-5">
       <div
-        style={{ backgroundImage: `url(${slides[currentSlideIndex].url})` }}
+        style={{
+          backgroundImage: `url(${slides[currentSlideIndex].featuredImg})`,
+        }}
         className="w-full h-full bg-center bg-cover duration-500">
         <p className="text-4xl w-[350px] leading-[50px] font-display text-white absolute top-[+45%] translate-x-0 translate-y-[-45%] left-[10%] cursor-pointer">
           {slides[currentSlideIndex].name}

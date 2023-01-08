@@ -3,7 +3,7 @@ import { AppState } from "../store/store";
 import { toast } from "react-toastify";
 
 export interface Item{
-    id: number
+    _id: number
     cartQuantity: number,
     name: string
     image: string
@@ -36,7 +36,7 @@ const cartReducer = createSlice({
     initialState,
     reducers: {
         addToCart(state, action) {
-          const itemIndex = state.cartItem.findIndex((x) => x.id === action.payload.id)
+          const itemIndex = state.cartItem.findIndex((x) => x._id === action.payload._id)
             if (itemIndex >= 0) {
                 state.cartItem[itemIndex].cartQuantity += 1
                 toast.success(`${state.cartItem[itemIndex].name} Added To Cart`, {
@@ -52,7 +52,7 @@ const cartReducer = createSlice({
             localStorage.setItem('cartItems', JSON.stringify(state.cartItem))
         },
         removeFromCart(state, action) {
-            const newCartItems = state.cartItem.filter((cartItem) => cartItem.id !== action.payload.id)
+            const newCartItems = state.cartItem.filter((cartItem) => cartItem._id !== action.payload._id)
             state.cartItem = newCartItems
             localStorage.setItem('cartItems', JSON.stringify(state.cartItem))
             toast.error(`${action.payload.name} Removed From Cart`, {
@@ -60,14 +60,14 @@ const cartReducer = createSlice({
                 })
         },
         decreaseCart(state, action) {
-            const itemIndex = state.cartItem.findIndex((x) => x.id === action.payload.id)
+            const itemIndex = state.cartItem.findIndex((x) => x._id=== action.payload._id)
             if (state.cartItem[itemIndex].cartQuantity > 1) {
                 state.cartItem[itemIndex].cartQuantity -= 1
                 toast.info("Item decremented from cart", {
                     position:"bottom-left"
                 })
             } else if (state.cartItem[itemIndex].cartQuantity === 1) {
-                const newCartItems = state.cartItem.filter((cartItem) => cartItem.id !== action.payload.id)
+                const newCartItems = state.cartItem.filter((cartItem) => cartItem._id !== action.payload._id)
             state.cartItem = newCartItems
             toast.error(`${action.payload.name} Removed From Cart`, {
                     position:"bottom-left"
@@ -76,7 +76,7 @@ const cartReducer = createSlice({
   localStorage.setItem('cartItems', JSON.stringify(state.cartItem))
         },
         // eslint-disable-next-line no-unused-vars
-        clearCart(state, action) {
+        clearCart(state, action:PayloadAction) {
             state.cartItem = []
             toast.error("Shopping Cart Cleared", {
                     position:"bottom-left"

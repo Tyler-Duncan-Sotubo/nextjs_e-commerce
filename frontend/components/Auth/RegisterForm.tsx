@@ -15,9 +15,9 @@ type UserSubmitForm = {
 const RegisterForm = () => {
   const validationSchema = Yup.object().shape({
     name: Yup.string()
-      .required("Name is required")
-      .min(3, "Name must be at least 6 characters")
-      .max(40, "Name must not exceed 40 characters"),
+      .required("Username is required")
+      .min(3, "Username must be at least 6 characters")
+      .max(12, "Username must not exceed 10 characters"),
     email: Yup.string()
       .required("Email is required")
       .email("Please enter valid Email Address"),
@@ -43,7 +43,7 @@ const RegisterForm = () => {
 
   useEffect(() => {
     if (auth._id) {
-      router.push("/welcome");
+      router.push("/checkout");
     }
   }, [auth, router]);
 

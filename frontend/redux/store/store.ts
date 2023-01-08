@@ -1,8 +1,7 @@
 import { configureStore, ThunkAction } from "@reduxjs/toolkit";
-import products from "../reducer/products";
+import productReducer from "../reducer/products";
 import { Action } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
-import slides from "../reducer/slides";
 import cartReducer from "../reducer/cartSlice";
 import { productApi } from "../../modules/productsApi";
 import authReducer from "../reducer/AuthSlice";
@@ -10,8 +9,7 @@ import authReducer from "../reducer/AuthSlice";
 const makeStore = () =>
   configureStore({
     reducer: {
-      product: products,
-      slide: slides,
+      product: productReducer,
       cart: cartReducer,
       auth: authReducer,
       [productApi.reducerPath]: productApi.reducer,

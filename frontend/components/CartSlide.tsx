@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, { FC } from "react";
+import { useRouter } from "next/router";
 import { MdClose } from "react-icons/md";
 import { cartSelector, removeFromCart } from "../redux/reducer/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
+import { authSelector } from "../redux/reducer/AuthSlice";
 
 interface Props {
   modalVisible: boolean;
@@ -14,18 +16,27 @@ interface Props {
 const CartSlide: FC<Props> = ({ modalVisible, setModalVisible }) => {
   const cartItems = useSelector(cartSelector);
   const selectedCartItems = cartItems.cartItem?.slice(0, 3);
-
   const dispatch = useDispatch();
+  const auth = useSelector(authSelector);
 
   const handleRemoveFromCart = (arg: any) => {
     dispatch(removeFromCart(arg));
+  };
+
+  let router = useRouter();
+  const handleCheckOut = () => {
+    if (auth._id) {
+      router.push("/checkout");
+    } else {
+      router.push("/login-register");
+    }
   };
 
   return (
     <>
       {modalVisible ? (
         <div className="fixed z-[9998] top-0 right-0 w-[100%] h-[100%] font-display">
-          <div className=" fixed w-1/4 h-full bg-white top-0 right-0 z-[9999] p-5 animate-slide">
+          <div className=" fixed w-1/4 h-full bg-white top-0 right-0 z-[9999] p-5 animate-slide shadow-lg">
             <div className="flex justify-between mt-1 border-b-[1px] pb-4">
               <p className="text-md font-medium ">Cart</p>
               <MdClose
@@ -84,6 +95,9 @@ const CartSlide: FC<Props> = ({ modalVisible, setModalVisible }) => {
                     </button>
                   </Link>
                   <button
+                    onClick={() => {
+                      handleCheckOut();
+                    }}
                     type="button"
                     className="bg-violet-600 text-white py-2 font-display uppercase font-semibold hover:bg-violet-500">
                     CheckOut

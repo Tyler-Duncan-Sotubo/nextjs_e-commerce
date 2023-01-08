@@ -1,26 +1,27 @@
 import { createSlice} from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
-// import data from "../../utils/data";
 import { AppState} from "../store/store";
 
 
-const initialState:any = [];
+const initialState:any = {
+    products:[]
+};
 
-export const ProductSlice = createSlice({
+export const productReducer = createSlice({
     name: "product",
     initialState,
     reducers: {
         setProductData:(state, action) => {
-           return [action.payload, state]
+            state.products = action.payload
         }
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {
-             return [action.payload, state]
+             state.products = action.payload
         }
     } 
 })
 
 export const getProductSelector = (state: AppState) => state.product
-export const {setProductData} = ProductSlice.actions
-export default ProductSlice.reducer
+export const {setProductData} = productReducer.actions
+export default productReducer.reducer

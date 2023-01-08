@@ -25,9 +25,6 @@ const ProductItem: FC<Props> = ({ product }) => {
             </h2>
           </Link>
           <p className="text-sm mb-2">£{product.price}.00</p>
-          <button type="button" className="text-violet-600 font-bold">
-            + Add to Cart
-          </button>
         </div>
       </div>
     </>
