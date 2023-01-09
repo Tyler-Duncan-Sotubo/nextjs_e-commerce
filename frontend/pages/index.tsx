@@ -15,7 +15,7 @@ export default function Home() {
     <>
       <Layout title="Hello">
         <Slider data={data} />
-        <AllProducts data={data} shirts={[]} />
+        <AllProducts data={data} />
       </Layout>
     </>
   );

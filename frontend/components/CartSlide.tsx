@@ -86,6 +86,10 @@ const CartSlide: FC<Props> = ({ modalVisible, setModalVisible }) => {
                     </div>
                   </>
                 ))}
+                <div className="flex justify-between text-sm border-b-[1px] pb-4">
+                  <p>Subtotal</p>
+                  <p className="font-bold">£{cartItems.cartTotalAmount}</p>
+                </div>
                 <div className="flex flex-col">
                   <Link href="/cart">
                     <button

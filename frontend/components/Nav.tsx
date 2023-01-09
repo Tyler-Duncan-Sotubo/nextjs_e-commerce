@@ -31,7 +31,7 @@ export const Nav: FC<Props> = ({ setModalVisible }) => {
             <Link href="/">Home</Link>
           </li>
           <li className="text-sm font-medium mr-12">
-            <Link href="/">Shop</Link>
+            <Link href="/shop">Shop</Link>
           </li>
           <li className="text-sm font-medium mr-12">
             <Link href="/">Womens</Link>
