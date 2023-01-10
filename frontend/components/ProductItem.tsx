@@ -1,6 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import React, { FC } from "react";
+import { FaRegHeart } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { addtoWishList } from "../redux/reducer/wishListSlice";
 
 interface Props {
   product: {
@@ -12,6 +15,12 @@ interface Props {
   };
 }
 const ProductItem: FC<Props> = ({ product }) => {
+  const dispatch = useDispatch();
+
+  const handleAddWishList = (arg: any) => {
+    dispatch(addtoWishList(arg));
+  };
+
   return (
     <>
       <div className="font-display mb-5 group">
@@ -25,6 +34,9 @@ const ProductItem: FC<Props> = ({ product }) => {
             </h2>
           </Link>
           <p className="text-sm mb-2">£{product.price}.00</p>
+          <div onClick={() => handleAddWishList(product)}>
+            <FaRegHeart size={18} />
+          </div>
         </div>
       </div>
     </>

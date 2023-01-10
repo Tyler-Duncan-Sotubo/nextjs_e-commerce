@@ -1,8 +1,10 @@
 import React, { FC, useState } from "react";
 import Head from "next/head";
-import { Nav } from "./Nav";
+import { Nav } from "./nav/Nav";
 import { Footer } from "./Footer";
 import CartSlide from "./CartSlide";
+import TopNav from "./nav/TopNav";
+import Wishlist from "./Wishlist";
 
 interface Props {
   title: string;
@@ -11,6 +13,7 @@ interface Props {
 
 const Layout: FC<Props> = ({ title, children }) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [openWishList, setOpenWishList] = useState<boolean>(false);
 
   return (
     <>
@@ -25,14 +28,22 @@ const Layout: FC<Props> = ({ title, children }) => {
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
         />
+        <Wishlist
+          openWishList={openWishList}
+          setOpenWishList={setOpenWishList}
+        />
         <div
           className={
-            modalVisible
+            modalVisible || openWishList
               ? "opacity-70 flex flex-col min-h-screen justify-between relative"
               : "flex flex-col min-h-screen justify-between relative "
           }>
           <header className="sticky top-0 z-50">
-            <Nav setModalVisible={setModalVisible} />
+            <TopNav />
+            <Nav
+              setModalVisible={setModalVisible}
+              setOpenWishList={setOpenWishList}
+            />
           </header>
           <main className="item-center">{children}</main>
           <footer>

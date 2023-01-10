@@ -5,15 +5,18 @@ import { FaRegHeart, FaShoppingCart } from "react-icons/fa";
 import { MdPerson, MdSearch } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useSelector, useDispatch } from "react-redux";
-import { cartSelector } from "../redux/reducer/cartSlice";
-import { authSelector, logOutUser } from "../redux/reducer/AuthSlice";
+import { cartSelector } from "../../redux/reducer/cartSlice";
+import { authSelector, logOutUser } from "../../redux/reducer/AuthSlice";
+import { wishListSelector } from "../../redux/reducer/wishListSlice";
 
 interface Props {
   setModalVisible: (boolean: any) => void;
+  setOpenWishList: (boolean: any) => void;
 }
 
-export const Nav: FC<Props> = ({ setModalVisible }) => {
+export const Nav: FC<Props> = ({ setModalVisible, setOpenWishList }) => {
   const cartCount = useSelector(cartSelector);
+  const wishListCount = useSelector(wishListSelector);
   const auth = useSelector(authSelector);
   const dispatch = useDispatch()<any>;
 
@@ -75,7 +78,18 @@ export const Nav: FC<Props> = ({ setModalVisible }) => {
             <Link href="/login-register">
               <MdPerson size={25} />
             </Link>
-            <FaRegHeart size={18} />
+            <div
+              className="flex cursor-pointer relative"
+              onClick={() => {
+                setOpenWishList(true);
+              }}>
+              <FaRegHeart className="cursor-pointer mr-1" size={18} />
+              <div className="absolute top-[-5px] right-[-15px] bg-red-600 w-4 rounded-[50%] text-center">
+                <p className="text-xs font-bold text-white">
+                  {wishListCount.itemsQuantity}
+                </p>
+              </div>
+            </div>
             <div
               onClick={() => {
                 setModalVisible(true);

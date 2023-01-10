@@ -41,12 +41,12 @@ export const Slider: FC<Props> = ({ data }) => {
   };
 
   return (
-    <div className="w-[1220px] h-[650px] relative m-auto group mt-5">
+    <div className="h-[650px] relative m-auto group">
       <div
         style={{
           backgroundImage: `url(${slides[currentSlideIndex].featuredImg})`,
         }}
-        className="w-full h-full bg-center bg-cover duration-500">
+        className="w-full h-full bg-center bg-cover duration-1000">
         <p className="text-4xl w-[350px] leading-[50px] font-display text-white absolute top-[+45%] translate-x-0 translate-y-[-45%] left-[10%] cursor-pointer">
           {slides[currentSlideIndex].name}
         </p>

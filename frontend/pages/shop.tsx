@@ -4,22 +4,33 @@ import axios from "axios";
 import { wrapper } from "../redux/store/store";
 import { setProductData, getProductSelector } from "../redux/reducer/products";
 import { useSelector } from "react-redux";
-import ProductItem from "../components/ProductItem";
 import { BsFillGrid3X3GapFill, BsListUl } from "react-icons/bs";
+import ProductList from "../components/ProductList";
 
 interface Props {
   data: [];
-  category: string;
 }
+
+type Data = [
+  {
+    name: string;
+    slug: string;
+    image: string;
+    brand: string;
+    price: number;
+    description: string;
+  }
+];
 
 const Shop: FC<Props> = () => {
   const { products } = useSelector(getProductSelector);
   const { product } = products;
   const data = product.products;
 
-  const [filterdata, setFilteredData] = useState<string[]>(data);
+  const [filterdata, setFilteredData] = useState<Data>(data);
   const [changeView, setChangeView] = useState<boolean>(false);
   const [isActive, setisActive] = useState<string>("active");
+  const [listActive, setListActive] = useState<string>("active");
 
   const handleFilter = (cat: string) => {
     const newData = data.filter((item: any) => {
@@ -33,32 +44,34 @@ const Shop: FC<Props> = () => {
 
   const handleListView = () => {
     setChangeView(true);
-    setisActive("list");
+    setListActive("list");
   };
 
   const handleGridView = () => {
     setChangeView(false);
-    setisActive("active");
+    setListActive("active");
   };
 
   return (
     <Layout title="shop">
-      <div className="flex justify-end font-display items-center gap-2 max-w-screen-xl m-auto mt-20 cursor-pointer">
+      <div
+        className="flex justify-end font-display items-center gap-2 
+        max-w-screen-xl m-auto mt-20 px-20 cursor-pointer pb-2 border-b-[1px]">
         <div onClick={() => handleGridView()}>
           <BsFillGrid3X3GapFill
             size={20}
-            className={isActive === "active" ? " shopCatactive" : "shopCat"}
+            className={listActive === "active" ? " shopCatactive" : "shopCat"}
           />
         </div>
         <div onClick={() => handleListView()}>
           <BsListUl
             size={25}
-            className={isActive === "list" ? " shopCatactive" : "shopCat"}
+            className={listActive === "list" ? " shopCatactive" : "shopCat"}
           />
         </div>
       </div>
-      <div className="flex justify-between font-display max-w-screen-xl m-auto mt-7">
-        <ul className="w-1/5">
+      <div className="flex justify-between font-display max-w-screen-xl m-auto mt-10 px-20">
+        <ul className="w-1/4">
           <li className="text-2xl my-5">Categories</li>
           <li
             className={isActive === "active" ? "shopCatactive" : "shopCat"}
@@ -89,17 +102,7 @@ const Shop: FC<Props> = () => {
             Shoes
           </li>
         </ul>
-        <div
-          className={
-            changeView
-              ? "flex flex-col justify-start w-4/5"
-              : "grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-3 w-4/5"
-          }>
-          {filterdata &&
-            filterdata.map((product: any) => (
-              <ProductItem product={product} key={product.slug} />
-            ))}
-        </div>
+        <ProductList data={filterdata} view={changeView} />
       </div>
     </Layout>
   );

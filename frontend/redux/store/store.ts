@@ -5,6 +5,7 @@ import { createWrapper } from "next-redux-wrapper";
 import cartReducer from "../reducer/cartSlice";
 import { productApi } from "../../modules/productsApi";
 import authReducer from "../reducer/AuthSlice";
+import wishListeReducer from "../reducer/wishListSlice";
 
 const makeStore = () =>
   configureStore({
@@ -13,6 +14,7 @@ const makeStore = () =>
       cart: cartReducer,
       auth: authReducer,
       [productApi.reducerPath]: productApi.reducer,
+      wishList:wishListeReducer
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(productApi.middleware),
