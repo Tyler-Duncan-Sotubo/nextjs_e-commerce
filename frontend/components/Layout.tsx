@@ -3,7 +3,6 @@ import Head from "next/head";
 import { Nav } from "./nav/Nav";
 import { Footer } from "./Footer";
 import CartSlide from "./CartSlide";
-import TopNav from "./nav/TopNav";
 import Wishlist from "./Wishlist";
 
 interface Props {
@@ -39,7 +38,6 @@ const Layout: FC<Props> = ({ title, children }) => {
               : "flex flex-col min-h-screen justify-between relative "
           }>
           <header>
-            <TopNav />
             <Nav
               setModalVisible={setModalVisible}
               setOpenWishList={setOpenWishList}

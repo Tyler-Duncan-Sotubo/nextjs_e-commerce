@@ -1,78 +1,62 @@
 import Link from "next/link";
 import React, { FC } from "react";
 import { FaTwitter, FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
+import data from "../utils/data";
 
 type Props = {};
 
+const social = [
+  { icon: <FaFacebookF />, name: "Facebook" },
+  { icon: <FaTwitter />, name: "Twitter" },
+  { icon: <FaInstagram />, name: "Instagram" },
+  { icon: <FaYoutube />, name: "Youtube" },
+];
+
 export const Footer: FC<Props> = () => {
   return (
-    <footer className="flex shadow-inner w-full justify-between py-16 px-16 bg-gray-100">
-      <div className="w-1/4">
+    <footer className="grid grid-cols-1 md:grid-cols-4 gap-10 p-10 shadow-inner">
+      <div className="">
         <div className="flex-Col">
-          <h2 className="text-2xl my-4">CROYDON</h2>
+          <h2 className="text-2xl">CROYDON</h2>
           <h3>© 2022 croydon All Rights Reserved</h3>
         </div>
       </div>
-      <div className="flex w-3/4 justify-between px-16">
-        <ul className="flex-Col list-none">
-          <li className="font-bold">
-            <Link href="/">ABOUT</Link>
-          </li>
-          <li className="flex my-4 text-gray-500">
-            <Link href="/">About us</Link>
-          </li>
-          <li className="flex my-4 text-gray-500">
-            <Link href="/">Store location</Link>
-          </li>
-          <li className="flex my-4 text-gray-500">
-            <Link href="/">Contact</Link>
-          </li>
-          <li className="flex my-4 text-gray-500">
-            <Link href="/">Orders tracking</Link>
-          </li>
-        </ul>
-        <div>
-          <ul className="flex-Col list-none">
-            <li className="font-bold">
-              <Link href="/">USEFUL LINKS</Link>
-            </li>
-            <li className="flex my-4 text-gray-500">
-              <Link href="/">Returns</Link>
-            </li>
-            <li className="flex my-4 text-gray-500">
-              <Link href="/">Support Policy</Link>
-            </li>
-            <li className="flex my-4 text-gray-500">
-              <Link href="/">Size guide</Link>
-            </li>
-            <li className="flex my-4 text-gray-500">
-              <Link href="/">FAQs</Link>
-            </li>
+      <div className="flex-Col list-none">
+        <h3 className="font-bold">
+          <Link href="/">ABOUT</Link>
+        </h3>
+        {data.about.map((item, index) => (
+          <ul key={index}>
+            <Link href="/">
+              <li className="flex my-4 text-gray-500">{item.name}</li>
+            </Link>
           </ul>
-        </div>
-        <div>
-          <ul className="flex-Col list-none">
-            <h3 className="font-bold">
-              <Link href="/"></Link>FOLLOW US ON
-            </h3>
-            <li className="flex my-4 text-gray-500 items-center">
-              <FaTwitter className="mr-3" />
-              <Link href="/">Twitter</Link>
-            </li>
-            <li className="flex my-4 text-gray-500 items-center">
-              <FaFacebookF className="mr-3" />
-              <Link href="/">Facebook</Link>
-            </li>
-            <li className="flex my-4 text-gray-500 items-center">
-              <FaInstagram className="mr-3" />
-              <Link href="/">Instagram</Link>
-            </li>
-            <li className="flex my-4 text-gray-500 items-center">
-              <FaYoutube className="mr-3" />
-              <Link href="/">Youtube</Link>
-            </li>
+        ))}
+      </div>
+      <div className="flex-Col list-none">
+        <h3 className="font-bold">
+          <Link href="/">USEFUL LINKS</Link>
+        </h3>
+        {data.links.map((item, index) => (
+          <ul key={index}>
+            <Link href="/">
+              <li className="flex my-4 text-gray-500">{item.name}</li>
+            </Link>
           </ul>
-        </div>
+        ))}
+      </div>
+      <div className="flex-Col list-none">
+        <h3 className="font-bold">
+          <Link href="/">FOLLOW US ON</Link>
+        </h3>
+        {social.map((item, index) => (
+          <Link href="/" key={index}>
+            <ul className="flex my-4 text-gray-500 items-center">
+              <li className="mr-3">{item.icon}</li>
+              <p>{item.name}</p>
+            </ul>
+          </Link>
+        ))}
       </div>
     </footer>
   );

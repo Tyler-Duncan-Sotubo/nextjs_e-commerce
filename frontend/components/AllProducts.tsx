@@ -10,7 +10,7 @@ const AllProducts: FC<Props> = ({ data }) => {
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-6 px-28 py-20 md:grid-cols-3 lg:grid-cols-3">
+      <div className="grid grid-cols-1 p-8 gap-6 md:px-28 md:py-20 md:grid-cols-3 lg:grid-cols-3">
         {featuredData &&
           featuredData.map((product: any) => (
             <ProductItem product={product} key={product.slug} />

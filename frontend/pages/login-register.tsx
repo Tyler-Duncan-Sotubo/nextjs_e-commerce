@@ -6,7 +6,7 @@ import RegisterForm from "../components/Auth/RegisterForm";
 const Login: FC = () => {
   return (
     <Layout title="Login">
-      <div className="grid grid-cols-2 gap-14 my-10 mx-auto max-w-screen-xl font-display p-10">
+      <div className="grid grid-cols-1 gap-14 my-10 mx-auto max-w-screen-xl font-display p-10 md:grid-cols-2 lg:grid-cols-2">
         <LoginForm />
         <RegisterForm />
       </div>
