@@ -21,12 +21,12 @@ export const Nav: FC<Props> = ({ setModalVisible, setOpenWishList }) => {
   const dispatch = useDispatch()<any>;
 
   return (
-    <nav className="font-display m-auto px-8 py-6 w-full shadow-md sticky top-0 z-5 bg-white">
+    <nav className="font-display m-auto px-2 py-2 w-full shadow-md bg-white">
       <div className="flex justify-between items-center">
-        <div className="flex w-1/6 px-5 items-center">
-          <GiHamburgerMenu size={30} />
+        <div className="flex w-1/6 px-2 items-center">
+          <GiHamburgerMenu size={25} />
           <Link href="/">
-            <h2 className="mx-4 text-2xl">CROYDON</h2>
+            <h2 className="mx-2 text-xl">CROYDON</h2>
           </Link>
         </div>
         <ul className="flex w-2/5 justify-center list-none">
@@ -84,11 +84,6 @@ export const Nav: FC<Props> = ({ setModalVisible, setOpenWishList }) => {
                 setOpenWishList(true);
               }}>
               <FaRegHeart className="cursor-pointer mr-1" size={18} />
-              <div className="absolute top-[-5px] right-[-15px] bg-red-600 w-4 rounded-[50%] text-center">
-                <p className="text-xs font-bold text-white">
-                  {wishListCount.itemsQuantity}
-                </p>
-              </div>
             </div>
             <div
               onClick={() => {

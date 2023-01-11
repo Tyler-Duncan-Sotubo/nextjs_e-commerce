@@ -39,13 +39,13 @@ const cartReducer = createSlice({
           const itemIndex = state.cartItem.findIndex((x) => x._id === action.payload._id)
             if (itemIndex >= 0) {
                 state.cartItem[itemIndex].cartQuantity += 1
-                toast.success(`${state.cartItem[itemIndex].name} Added To Cart`, {
+                toast.success(`Added To Cart`, {
                     position:"bottom-left"
                 })
             } else {
             const inititalProduct = {...action.payload, cartQuantity:1}
                 state.cartItem.push(inititalProduct)
-                toast.success(`${action.payload.name} Added To Cart`, {
+                toast.success(`Added To Cart`, {
                     position:"bottom-left"
                 })
             }
@@ -55,7 +55,7 @@ const cartReducer = createSlice({
             const newCartItems = state.cartItem.filter((cartItem) => cartItem._id !== action.payload._id)
             state.cartItem = newCartItems
             localStorage.setItem('cartItems', JSON.stringify(state.cartItem))
-            toast.error(`${action.payload.name} Removed From Cart`, {
+            toast.error(`Removed From Cart`, {
                     position:"bottom-left"
                 })
         },
@@ -69,7 +69,7 @@ const cartReducer = createSlice({
             } else if (state.cartItem[itemIndex].cartQuantity === 1) {
                 const newCartItems = state.cartItem.filter((cartItem) => cartItem._id !== action.payload._id)
             state.cartItem = newCartItems
-            toast.error(`${action.payload.name} Removed From Cart`, {
+            toast.error(`Removed From Cart`, {
                     position:"bottom-left"
                 })
             }

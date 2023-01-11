@@ -20,7 +20,11 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Component {...pageProps} />
-      <ToastContainer />
+      <ToastContainer
+        autoClose={1000}
+        hideProgressBar={true}
+        pauseOnHover={false}
+      />
     </>
   );
 }

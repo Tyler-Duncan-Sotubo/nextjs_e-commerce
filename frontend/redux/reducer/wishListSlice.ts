@@ -39,12 +39,13 @@ const wishListeReducer = createSlice({
         addtoWishList(state, action) {
             const itemIndex = state.items.findIndex((x) => x._id === action.payload._id)
             if (itemIndex >= 0) {
-                state.items.pop(itemIndex)
+                const newCartItems = state.items.filter((x) => x._id !== action.payload._id)
+                state.items = newCartItems
                 toast.error("Removed From Wishlist", {
                     position:"bottom-left"
                 })
             } else {
-                const inititalProduct = { ...action.payload, itemsTotal: 1 }
+                const inititalProduct = { ...action.payload, itemsQuantity: 1 }
                 state.items.push(inititalProduct)
                 toast.success("Added From Wishlist", {
                     position:"bottom-left"
@@ -52,9 +53,17 @@ const wishListeReducer = createSlice({
             }
             localStorage.setItem('wishlist', JSON.stringify(state.items))
         },
+        removeWishList(state, action) {
+            const newCartItems = state.items.filter((x) => x._id !== action.payload._id)
+            state.items = newCartItems
+            localStorage.setItem('wishlist', JSON.stringify(state.items))
+            toast.error("Removed From Wishlist", {
+                    position:"bottom-left"
+                })
+        }
     }
 })
 
 export const wishListSelector = (state: AppState) => state.wishList
-export const { addtoWishList} = wishListeReducer.actions
+export const { addtoWishList, removeWishList} = wishListeReducer.actions
 export default wishListeReducer.reducer

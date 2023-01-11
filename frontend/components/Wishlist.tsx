@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   addtoWishList,
+  removeWishList,
   wishListSelector,
 } from "../redux/reducer/wishListSlice";
 
@@ -16,11 +17,11 @@ interface Props {
 
 const Wishlist: FC<Props> = ({ openWishList, setOpenWishList }) => {
   const items = useSelector(wishListSelector);
-  const selectedCartItems = items.items?.slice(0, 3);
+  const selectedCartItems = items.items?.slice(0, 6);
   const dispatch = useDispatch();
 
-  const handleAddWishList = (arg: any) => {
-    dispatch(addtoWishList(arg));
+  const removeFromWishList = (arg: any) => {
+    dispatch(removeWishList(arg));
   };
 
   return (
@@ -63,7 +64,7 @@ const Wishlist: FC<Props> = ({ openWishList, setOpenWishList }) => {
                           <div
                             className="border-2 py-[.1rem] px-[.2rem] text-xs cursor-pointer"
                             onClick={() => {
-                              handleAddWishList(item);
+                              removeFromWishList(item);
                             }}>
                             X
                           </div>

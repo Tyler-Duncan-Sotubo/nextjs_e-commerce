@@ -38,7 +38,7 @@ const Layout: FC<Props> = ({ title, children }) => {
               ? "opacity-70 flex flex-col min-h-screen justify-between relative"
               : "flex flex-col min-h-screen justify-between relative "
           }>
-          <header className="sticky top-0 z-50">
+          <header>
             <TopNav />
             <Nav
               setModalVisible={setModalVisible}

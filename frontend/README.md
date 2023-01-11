@@ -11,6 +11,8 @@
 - Connect Mongo DB to backend - Done
 - login Functionality With MongoDB - Done
 - Loading Product from Mongo DB - Done
+- wishlist total and Further UI
+- DropDown Menu
 - Shipping Page
 - Payment Page
 - Order Screen
