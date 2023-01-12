@@ -26,3 +26,15 @@
 .shopCatactive {
   @apply text-sm my-3 text-black hover:underline cursor-pointer;
 }
+
+.chechouth3 {
+  @apply text-xl font-semibold;
+}
+
+.checkoutTb {
+  @apply flex justify-between mb-6 border-b-[1px] border-b-gray-500 py-1;
+}
+
+.checkoutp {
+  @apply text-[13px] text-gray-500;
+}

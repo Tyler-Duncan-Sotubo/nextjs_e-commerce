@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import type { AppProps } from "next/app";
 import { wrapper } from "../redux/store/store";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,6 +12,17 @@ function App({ Component, pageProps }: AppProps) {
   const dispatch = useDispatch();
   const cartItems = useSelector(cartSelector);
 
+  const Hydrated = ({ children }: { children?: any }) => {
+    const [hydration, setHydration] = useState(false);
+
+    useEffect(() => {
+      if (typeof window !== "undefined") {
+        setHydration(true);
+      }
+    }, []);
+    return hydration ? children : "";
+  };
+
   useEffect(() => {
     dispatch(getTotals());
     dispatch(getUser());
@@ -19,12 +30,14 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Component {...pageProps} />
-      <ToastContainer
-        autoClose={1000}
-        hideProgressBar={true}
-        pauseOnHover={false}
-      />
+      <Hydrated>
+        <Component {...pageProps} />
+        <ToastContainer
+          autoClose={1000}
+          hideProgressBar={true}
+          pauseOnHover={false}
+        />
+      </Hydrated>
     </>
   );
 }

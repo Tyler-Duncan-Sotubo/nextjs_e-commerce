@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,6 +10,7 @@ import {
   removeFromCart,
   decreaseCart,
   clearCart,
+  getTotals,
 } from "../redux/reducer/cartSlice";
 import {
   HiPlus,
@@ -42,6 +43,10 @@ const Cart: FC<Props> = () => {
   const clearAllCart = () => {
     dispatch(clearCart());
   };
+
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [cartItems, dispatch]);
 
   const auth = useSelector(authSelector);
 

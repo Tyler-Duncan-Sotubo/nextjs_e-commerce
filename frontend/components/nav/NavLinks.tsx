@@ -12,16 +12,16 @@ const NavLinks: FC<Props> = () => {
     <>
       {navlinks.map((link, index) => (
         <div key={index} className="z-50 font-display text-sm">
-          <div className=" text-left md:cursor-pointer group">
-            <h1 className="py-2 flex gap-1 justify-between items-center md:pr-0 pr-5 group">
+          <div className=" text-left md:cursor-pointer group ">
+            <h1 className="py-2 flex gap-1 justify-between items-center md:pr-0 pr-5  group">
               {link.name}
               <IoIosArrowDown />
             </h1>
             <div></div>
             {link.submenu && (
               <div>
-                <div className="absolute hidden group-hover:md:block hover:md:block">
-                  <div className="bg-white p-5 grid grid-cols-3 gap-10">
+                <div className="absolute hidden group-hover:md:block hover:md:inline-block">
+                  <div className="bg-white px-8 py-5 grid grid-cols-3 gap-20">
                     {link.sublinks.map((mysublinks, index) => (
                       <div key={index}>
                         <h1 className="text-lg font-semibold">
@@ -30,7 +30,7 @@ const NavLinks: FC<Props> = () => {
                         {mysublinks.sublink.map((slink, index) => (
                           <li
                             key={index}
-                            className="text-sm text-gray-600 my-2.5">
+                            className="text-sm text-gray-600 my-4 ">
                             <Link
                               href={slink.link}
                               className="hover:text-primary">
