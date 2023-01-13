@@ -3,6 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const register = require("./routes/register");
 const login = require("./routes/login");
+const stripe = require("./routes/stripe");
 const { Product } = require("./models/products");
 const postProduct = require("./routes/productPost");
 
@@ -28,6 +29,7 @@ mongoose
 
 app.use("/api/register", register);
 app.use("/api/login", login);
+app.use("/stripe", stripe);
 app.use("/post/products", postProduct);
 
 app.get("/", (req, res) => {

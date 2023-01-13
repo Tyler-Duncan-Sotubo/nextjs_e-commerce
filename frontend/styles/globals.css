@@ -16,7 +16,7 @@
 }
 
 .input {
-  @apply w-full outline-none border-b-2 py-4 font-display capitalize hover:border-black bg-transparent;
+  @apply w-full outline-none border-b-2 py-4 font-display capitalize hover:border-black bg-transparent text-xs;
 }
 
 .shopCat {
@@ -37,4 +37,12 @@
 
 .checkoutp {
   @apply text-[13px] text-gray-500;
+}
+
+.inputError {
+  @apply text-red-500 text-left mt-3;
+}
+
+.submitButton {
+  @apply bg-violet-600 w-[40%] text-white py-3 my-6 font-display uppercase font-semibold hover:bg-violet-500;
 }
