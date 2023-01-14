@@ -2,19 +2,32 @@ import React, { FC, useState } from "react";
 import axios from "axios";
 import { base_url } from "../../redux/reducer/api";
 
-type Props = {};
+interface Form {
+  name: string;
+  price: number;
+  brand: string;
+  slug: string;
+}
 
-const UploadForm: FC<Props> = () => {
+const UploadForm: FC = () => {
   const [image, setImage] = useState<string | ArrayBuffer | null>("");
-  const [name, setName] = useState("");
+  const [form, setForm] = React.useState<Form>({
+    name: "",
+    price: 0,
+    brand: "",
+    slug: "",
+  });
+
+  const handleChange = (event: any) => {
+    setForm({
+      ...form,
+      [event.target.id]: event.target.value,
+    });
+  };
 
   const handleImageSubmit = (e: any) => {
     const file = e.target.files[0];
     convert2base64(file);
-  };
-
-  const handleName = (event: any) => {
-    setName(event.target.value);
   };
 
   const convert2base64 = (file: any) => {
@@ -36,7 +49,7 @@ const UploadForm: FC<Props> = () => {
     if (serverImage) {
       axios
         .post(`${base_url}post/products`, {
-          name,
+          name: form.name,
           image: serverImage,
         })
         .then((res) => {
@@ -63,12 +76,24 @@ const UploadForm: FC<Props> = () => {
             onChange={handleImageSubmit}
           />
         </label>
-        <label>Name</label>
-        <input
-          className="border-b-2 outline-none"
-          value={name}
-          onChange={handleName}
-        />
+        <div>
+          <label htmlFor="email">Email</label>
+          <input
+            id="name"
+            type="text"
+            value={form.name}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Password</label>
+          <input
+            id="price"
+            type="number"
+            value={form.price}
+            onChange={handleChange}
+          />
+        </div>
         <button type="submit">Login</button>
       </form>
     </>
