@@ -31,7 +31,7 @@ const TopNav: FC<Props> = () => {
           </div>
         </div>
         <div className="flex items-center">
-          <Link href="/admin">
+          <Link href="/admin/dashboard">
             <p className="mr-10">Admin</p>
           </Link>
           <div className="border-r-[1px] pr-4 capitalize">
