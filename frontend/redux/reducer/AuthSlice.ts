@@ -74,23 +74,21 @@ export const loginUser = createAsyncThunk(
       localStorage.setItem("token", token.data);
       return token.data;
     } catch (error: any) {
-        console.log(error.response.data)
+      console.log(error.response.data);
       return rejectWithValue(error.response.data);
     }
   }
 );
-
-
 
 const authReducer = createSlice({
   name: "auth",
   initialState,
   reducers: {
     // eslint-disable-next-line no-unused-vars
-    getUser(state, action:PayloadAction):any {
+    getUser(state, action: PayloadAction): any {
       const token = state.token;
       if (token) {
-        const user:any = jwtDecode(token);
+        const user: any = jwtDecode(token);
         return {
           ...state,
           name: user.name,
@@ -101,7 +99,7 @@ const authReducer = createSlice({
       }
     },
     // eslint-disable-next-line no-unused-vars
-    logOutUser(state, action:PayloadAction):any {
+    logOutUser(state, action: PayloadAction): any {
       localStorage.removeItem("token");
       return {
         ...state,
@@ -137,10 +135,14 @@ const authReducer = createSlice({
     });
     // eslint-disable-next-line no-unused-vars
     builder.addCase(registerUser.rejected, (state, action) => {
-      return { ...state, registerStatus: "rejected", registerError:action.payload};
+      return {
+        ...state,
+        registerStatus: "rejected",
+        registerError: action.payload,
+      };
     });
-       // eslint-disable-next-line no-unused-vars
-   builder.addCase(loginUser.pending, (state, action) => {
+    // eslint-disable-next-line no-unused-vars
+    builder.addCase(loginUser.pending, (state, action) => {
       return { ...state, registerStatus: "pending" };
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
@@ -152,13 +154,13 @@ const authReducer = createSlice({
           name: user.name,
           email: user.email,
           _id: user._id,
-         loginStatus: "success",
+          loginStatus: "success",
         };
       } else return state;
     });
     // eslint-disable-next-line no-unused-vars
     builder.addCase(loginUser.rejected, (state, action) => {
-      return { ...state,   loginStatus: "rejected", loginError:action.payload };
+      return { ...state, loginStatus: "rejected", loginError: action.payload };
     });
   },
 });

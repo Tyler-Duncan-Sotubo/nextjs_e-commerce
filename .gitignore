@@ -6,6 +6,7 @@
 /.pnp
 .pnp.js
 /frontend/firebase.js
+/backend/s3_config.json
 
 # testing
 /coverage

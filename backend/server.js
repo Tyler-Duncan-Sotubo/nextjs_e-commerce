@@ -4,13 +4,14 @@ const mongoose = require("mongoose");
 const register = require("./routes/register");
 const login = require("./routes/login");
 const stripe = require("./routes/stripe");
+const s3 = require("./routes/s3");
 const { Product } = require("./models/products");
 const postProduct = require("./routes/productPost");
 
 require("dotenv").config();
 
 const app = express();
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
 app.use(cors());
 
 const port = process.env.PORT || 1000;
@@ -30,6 +31,7 @@ mongoose
 app.use("/api/register", register);
 app.use("/api/login", login);
 app.use("/stripe", stripe);
+app.use("/images", s3);
 app.use("/post/products", postProduct);
 
 app.get("/", (req, res) => {

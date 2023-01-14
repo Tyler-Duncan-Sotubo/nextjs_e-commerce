@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
 import Layout from "../components/Layout";
+import { useDispatch } from "react-redux";
+import { clearCart } from "../redux/reducer/cartSlice";
 
 const Success = () => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    localStorage.removeItem("cartItems");
+    window.localStorage.removeItem("cartItems");
   }, []);
 
   return <Layout title="Check">success</Layout>;

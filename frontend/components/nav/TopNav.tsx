@@ -31,6 +31,9 @@ const TopNav: FC<Props> = () => {
           </div>
         </div>
         <div className="flex items-center">
+          <Link href="/admin">
+            <p className="mr-10">Admin</p>
+          </Link>
           <div className="border-r-[1px] pr-4 capitalize">
             {auth._id ? (
               "hello," + " " + auth.name

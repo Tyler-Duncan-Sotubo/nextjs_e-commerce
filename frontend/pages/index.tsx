@@ -5,6 +5,7 @@ import { wrapper } from "../redux/store/store";
 import { setProductData, getProductSelector } from "../redux/reducer/products";
 import { useSelector } from "react-redux";
 import AllProducts from "../components/AllProducts";
+import { url } from "../redux/reducer/api";
 
 export default function Home() {
   const { products } = useSelector(getProductSelector);
@@ -23,7 +24,7 @@ export default function Home() {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {
-    const res = await axios.get("http://localhost:1000/api/products");
+    const res = await axios.get(`${url}/products`);
     const apiData = res.data;
 
     store.dispatch(setProductData(apiData));
