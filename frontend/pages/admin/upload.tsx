@@ -4,7 +4,7 @@ import UploadForm from "../../components/Admin/UploadForm";
 
 const Upload: FC = () => {
   return (
-    <AdminLayout title="upload">
+    <AdminLayout title="Upload Product Page">
       <UploadForm />
     </AdminLayout>
   );

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React, { FC } from "react";
 import { RxAvatar, RxBell } from "react-icons/rx";
 import { IoSearchOutline } from "react-icons/io5";
@@ -7,7 +6,7 @@ type Props = {};
 
 const TopBar: FC<Props> = () => {
   return (
-    <div className="shadow-md flex justify-between py-6 items-center">
+    <div className="flex justify-between py-6 items-center border-b-[1px]">
       <div className="w-1/4">
         <p className="text-xl font-display px-6 font-semibold">Dashboard</p>
       </div>

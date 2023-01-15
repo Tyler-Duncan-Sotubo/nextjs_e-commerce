@@ -5,18 +5,18 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   let product = new Product({
-    // featuredImg: req.body.featuredImg,
-    // tag: req.body.tag,
+    featuredImg: req.body.featuredImg,
+    tag: req.body.tag,
     name: req.body.name,
-    // slug: req.body.slug,
-    // category: req.body.category,
+    slug: req.body.slug,
+    category: req.body.category,
     image: req.body.image,
-    // price: req.body.price,
-    // brand: req.body.brand,
-    // rating: req.body.rating,
-    // numReviews: req.body.numReviews,
-    // countInStock: req.body.countInStock,
-    // description: req.body.description,
+    price: req.body.price,
+    brand: req.body.brand,
+    rating: req.body.rating,
+    numReviews: req.body.numReviews,
+    countInStock: req.body.countInStock,
+    description: req.body.description,
     // images: [
     //   {
     //     img: req.body.images[0].img,

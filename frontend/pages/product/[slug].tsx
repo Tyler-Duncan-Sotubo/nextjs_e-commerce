@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import Layout from "../../components/Layout";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/reducer/cartSlice";
@@ -15,16 +15,17 @@ interface Product {
     description: string;
     numReviews: number;
     price: number;
+    image: string;
   };
 }
 
 const ProductPage: FC<Product> = ({ product }) => {
   const dispatch = useDispatch();
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  // const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  const gotToIndex = (slideIndex: React.SetStateAction<number>) => {
-    setCurrentIndex(slideIndex);
-  };
+  // const gotToIndex = (slideIndex: React.SetStateAction<number>) => {
+  //   setCurrentIndex(slideIndex);
+  // };
 
   const handleAddToCart = (product: any) => {
     dispatch(addToCart(product));
@@ -43,8 +44,16 @@ const ProductPage: FC<Product> = ({ product }) => {
             </Link>
             <p className="text-md">{product?.name}</p>
           </div>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xs:grid-cols-1 lg:grid-cols-2 w-full">
-            <div className="relative col-span-1">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3 xs:grid-cols-1 lg:grid-cols-3 w-full">
+            <div className="relative">
+              <Image
+                src={product.image}
+                width={450}
+                height={500}
+                alt={product?.name}
+              />
+            </div>
+            {/* <div className="relative col-span-1">
               <div className="relative">
                 <Image
                   src={product.images![currentIndex].img}
@@ -65,8 +74,8 @@ const ProductPage: FC<Product> = ({ product }) => {
                   </div>
                 ))}
               </div>
-            </div>
-            <div className="col-span-1">
+            </div> */}
+            <div className="col-span-2">
               <p>
                 {product?.rating} of {product?.numReviews} Reviews
               </p>

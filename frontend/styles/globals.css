@@ -46,3 +46,7 @@
 .submitButton {
   @apply bg-violet-600 w-[40%] text-white py-3 my-6 font-display uppercase font-semibold hover:bg-violet-500;
 }
+
+.adminUploadInput {
+  @apply outline-none w-full border-2 py-2 px-4 mb-5 border-b-2 rounded-md bg-gray-200 placeholder:text-black placeholder:capitalize;
+}
