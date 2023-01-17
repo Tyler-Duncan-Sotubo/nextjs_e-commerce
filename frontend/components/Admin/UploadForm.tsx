@@ -150,7 +150,8 @@ const UploadForm: FC = () => {
             placeholder="description"
             className="adminUploadInput h-[200px]"
             minLength={100}
-            maxLength={500}></textarea>
+            maxLength={500}
+            {...register("description", { required: true })}></textarea>
         </div>
         <div className="flex flex-col mb-4 items-center">
           <div className="flex mb-6">

@@ -6,7 +6,7 @@ interface Props {
 }
 
 const AllProducts: FC<Props> = ({ data }) => {
-  const featuredData = data.slice(data.length - 9, data.length);
+  const featuredData = data.slice(data.length - 9, data.length).reverse();
 
   return (
     <>

@@ -6,7 +6,6 @@ import {
   IoBagHandleOutline,
   IoLogOutOutline,
   IoSettingsOutline,
-  IoCloudUploadSharp,
 } from "react-icons/io5";
 import { GrTransaction } from "react-icons/gr";
 
@@ -15,13 +14,16 @@ const data = [
   { name: "statistics", icon: <IoStatsChart />, path: "/admin/dashboard" },
   { name: "payment", icon: <MdOutlinePayments />, path: "/admin/dashboard" },
   { name: "transactions", icon: <GrTransaction />, path: "/admin/dashboard" },
-  { name: "products", icon: <IoBagHandleOutline />, path: "/admin/dashboard" },
+  {
+    name: "products",
+    icon: <IoBagHandleOutline />,
+    path: "/admin/products",
+  },
   { name: "customers", icon: <MdPeopleAlt />, path: "/" },
 ];
 
 const footer = [
   { name: "setting", icon: <IoSettingsOutline />, path: "/admin/dashboard" },
-  { name: "upload", icon: <IoCloudUploadSharp />, path: "/admin/upload" },
   { name: "logout", icon: <IoLogOutOutline />, path: "/admin/dashboard" },
 ];
 

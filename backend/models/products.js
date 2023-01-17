@@ -14,14 +14,6 @@ const productSchema = new mongoose.Schema(
     numReviews: { type: String, required: true },
     countInStock: { type: String, required: true },
     description: { type: String, required: true },
-    // images: [
-    //   {
-    //     _id: false,
-    //     img: {
-    //       type: "string",
-    //     },
-    //   },
-    // ],
   },
   { timestamps: true }
 );
