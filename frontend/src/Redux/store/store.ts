@@ -3,7 +3,7 @@ import productReducer from "../reducer/products";
 import { Action } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import cartReducer from "../reducer/cartSlice";
-import { productApi } from "../../../modules/productsApi";
+import { productApi } from "../reducer/productsApi";
 import authReducer from "../reducer/AuthSlice";
 import wishListeReducer from "../reducer/wishListSlice";
 
