@@ -1,5 +1,4 @@
 import React, { FC, useEffect } from "react";
-import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import Layout from "@components/Layout/Layout";
@@ -20,13 +19,18 @@ import {
 } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { MdClose } from "react-icons/md";
-import { authSelector } from "@/Redux/reducer/AuthSlice";
+import { getFromLocalStorage } from "@/Helpers/useLocalStorage";
+import PayButton from "@/components/UI/PayButton";
 
 type Props = {};
 
 const Cart: FC<Props> = () => {
   const cartItems = useSelector(cartSelector);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    getFromLocalStorage("cartItems");
+  });
 
   const handleAddToCart = (arg: any) => {
     dispatch(addToCart(arg));
@@ -48,21 +52,10 @@ const Cart: FC<Props> = () => {
     dispatch(getTotals());
   }, [cartItems, dispatch]);
 
-  const auth = useSelector(authSelector);
-
-  let router = useRouter();
-  const handleCheckOut = () => {
-    if (auth._id) {
-      router.push("/checkout");
-    } else {
-      router.push("/login-register");
-    }
-  };
-
   return (
     <>
       <Layout title="Your Cart">
-        {cartItems.cartItem.length === 0 ? (
+        {cartItems.cartTotalAmount === 0 ? (
           <div className="flex flex-col justify-center items-center gap-8 my-40">
             <HiShoppingCart size={150} className="text-gray-400" />
             <p>Cart Is currently Empty</p>
@@ -104,20 +97,20 @@ const Cart: FC<Props> = () => {
                           className="bg-white border-b hover:bg-gray-50">
                           <th
                             scope="row"
-                            className="px-6 py-6 font-medium text-gray-900 whitespace-nowrap  flex">
+                            className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap flex items-center">
                             <Link href={`/product/${item.slug}`}>
-                              <Image
-                                src={item.image}
-                                width={80}
-                                height={80}
-                                alt={item.name}
-                              />
+                              <div className="relative w-10 h-10 mr-4">
+                                <Image
+                                  src={item.image}
+                                  fill
+                                  className="mr-4"
+                                  alt={item.name}
+                                />
+                              </div>
                             </Link>
-                            <div className="ml-2 flex flex-col gap-1 pt-2">
-                              <p className="font-medium text-[16px]">
-                                {item.name}
-                              </p>
-                              <p className="font-light text-[13px]">
+                            <div className="flex flex-col gap-1 pt-2">
+                              <p className="font-medium text-xs">{item.name}</p>
+                              <p className="font-light text-xs">
                                 Brand: {item.brand}
                               </p>
                             </div>
@@ -187,14 +180,7 @@ const Cart: FC<Props> = () => {
                 <p className=" text-xs mt-10 text-gray-500">
                   Taxes and shipping calculated at checkout
                 </p>
-                <button
-                  onClick={() => {
-                    handleCheckOut();
-                  }}
-                  type="button"
-                  className="bg-violet-600 w-[100%] text-white py-3 my-2 font-display uppercase font-semibold hover:bg-violet-500">
-                  Proceed to Checkout
-                </button>
+                <PayButton cart={cartItems.cartItem} />
                 <Link href="/">
                   <div className="flex items-center flex-row my-4">
                     <HiOutlineArrowLeft size={20} />

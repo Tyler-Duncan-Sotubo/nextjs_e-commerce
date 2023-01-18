@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, { FC } from "react";
-import { useRouter } from "next/router";
 import { MdClose } from "react-icons/md";
 import { cartSelector, removeFromCart } from "../Redux/reducer/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
 import { authSelector } from "@/Redux/reducer/AuthSlice";
+import PayButton from "./UI/PayButton";
 
 interface Props {
   modalVisible: boolean;
@@ -21,15 +21,6 @@ const CartSlide: FC<Props> = ({ modalVisible, setModalVisible }) => {
 
   const handleRemoveFromCart = (arg: any) => {
     dispatch(removeFromCart(arg));
-  };
-
-  let router = useRouter();
-  const handleCheckOut = () => {
-    if (auth._id) {
-      router.push("/checkout");
-    } else {
-      router.push("/login-register");
-    }
   };
 
   return (
@@ -98,14 +89,7 @@ const CartSlide: FC<Props> = ({ modalVisible, setModalVisible }) => {
                       View Cart
                     </button>
                   </Link>
-                  <button
-                    onClick={() => {
-                      handleCheckOut();
-                    }}
-                    type="button"
-                    className="bg-violet-600 text-white py-2 font-display uppercase font-semibold hover:bg-violet-500">
-                    CheckOut
-                  </button>
+                  <PayButton cart={cartItems.cartItem} />
                 </div>
               </div>
             )}

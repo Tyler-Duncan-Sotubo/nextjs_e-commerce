@@ -3,27 +3,20 @@ import AdminLayout from "@components/Layout/AdminLayout";
 import RoundeButton from "@components/UI/RoundeButton";
 import SearchInput from "@components/UI/SearchInput";
 import { BsPlus } from "react-icons/bs";
-import {
-  MdOutlineSort,
-  MdOutlineArrowBack,
-  MdOutlineArrowForward,
-} from "react-icons/md";
+import { MdOutlineSort } from "react-icons/md";
 import Link from "next/link";
-import { useSelector } from "react-redux";
-import { getProductSelector } from "@/Redux/reducer/products";
 import Image from "next/image";
 import { IProduct } from "@/lib/interfaces/IProduct";
+import { useQuery, QueryClient } from "react-query";
+import { dehydrate } from "react-query/hydration";
+import { getProducts } from "@/Helpers/getProducts";
+import Pagination from "@/components/UI/Pagination";
 
 const Products: FC = () => {
-  const { products } = useSelector(getProductSelector);
-  const { product } = products;
-  const data = product.products;
+  const { data } = useQuery("products", getProducts);
+
   const productPerPage = 6;
-  const [currentPage, setcurrentPage] = useState(1);
-
-  const totalNumerOfPages = Math.ceil(data.length / productPerPage);
-  const pages = [...Array(totalNumerOfPages + 1).keys()].slice(1);
-
+  const [currentPage, setcurrentPage] = useState<number>(1);
   const indexOfLastProduct = currentPage * productPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productPerPage;
 
@@ -33,18 +26,6 @@ const Products: FC = () => {
     indexOfFirstProduct,
     indexOfLastProduct
   );
-
-  const handleNextPage = () => {
-    if (currentPage !== totalNumerOfPages) {
-      setcurrentPage(currentPage + 1);
-    }
-  };
-
-  const handlePreviousPage = () => {
-    if (currentPage !== 1) {
-      setcurrentPage(currentPage - 1);
-    }
-  };
 
   return (
     <AdminLayout title="Product Page">
@@ -57,10 +38,10 @@ const Products: FC = () => {
         </div>
         <Link href="/admin/upload">
           <RoundeButton>
-            <div className="flexBetween">
-              <p>Add product</p>
+            <p>Add product</p>
+            <span className="ml-2">
               <BsPlus size={25} />
-            </div>
+            </span>
           </RoundeButton>
         </Link>
       </div>
@@ -116,31 +97,26 @@ const Products: FC = () => {
             </tbody>
           </table>
         </div>
-        <div className="flex mt-12 justify-center font-display text-sm">
-          <span
-            className="flexBetween bg-gray-50  mx-2 px-6 shadow-lg border-2 cursor-pointer rounded-md"
-            onClick={handlePreviousPage}>
-            <MdOutlineArrowBack size={25} />
-            <p className="mx-2">Previous</p>
-          </span>
-          {pages.map((page) => (
-            <span
-              className="flexBetween bg-gray-50  mr-2 py-2 px-4 shadow-lg border-2 cursor-pointer rounded-md"
-              key={page}
-              onClick={() => setcurrentPage(page)}>
-              {page}
-            </span>
-          ))}
-          <span
-            className="flexBetween bg-gray-50  mx-2 px-6 shadow-lg border-2 cursor-pointer rounded-md"
-            onClick={handleNextPage}>
-            <p className="mx-2">Next</p>
-            <MdOutlineArrowForward size={25} />
-          </span>
-        </div>
+        <Pagination
+          data={newData}
+          productPerPage={productPerPage}
+          currentPage={currentPage}
+          setcurrentPage={setcurrentPage}
+        />
       </div>
     </AdminLayout>
   );
 };
 
 export default Products;
+
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery<IProduct>("products", getProducts);
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}

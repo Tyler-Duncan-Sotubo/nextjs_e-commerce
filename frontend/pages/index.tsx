@@ -1,16 +1,13 @@
 import Layout from "@/components/Layout/Layout";
 import { Slider } from "@components/Slider";
-import axios from "axios";
-import { wrapper } from "@/Redux/store/store";
-import { setProductData, getProductSelector } from "@/Redux/reducer/products";
-import { useSelector } from "react-redux";
 import AllProducts from "@components/AllProducts";
-import { url } from "@/Redux/reducer/api";
+import { useQuery, QueryClient } from "react-query";
+import { dehydrate } from "react-query/hydration";
+import { getProducts } from "@/Helpers/getProducts";
+import { IProduct } from "@/lib/interfaces/IProduct";
 
 export default function Home() {
-  const { products } = useSelector(getProductSelector);
-  const { product } = products;
-  const data = product.products;
+  const { data } = useQuery("products", getProducts);
 
   return (
     <>
@@ -22,15 +19,13 @@ export default function Home() {
   );
 }
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => {
-    const res = await axios.get(`${url}/products`);
-    const apiData = res.data;
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery<IProduct>("products", getProducts);
 
-    store.dispatch(setProductData(apiData));
-
-    return {
-      props: {},
-    };
-  }
-);
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}

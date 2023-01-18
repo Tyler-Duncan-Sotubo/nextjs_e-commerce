@@ -5,7 +5,9 @@ export interface IProduct {
   brand: string;
   price: number;
   description: string;
-  countInStock: string;
+  countInStock: number;
   _id: number;
   cartQuantity: number;
+  rating: number;
+  numReviews: string;
 }

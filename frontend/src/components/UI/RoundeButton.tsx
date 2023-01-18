@@ -9,7 +9,7 @@ const RoundeButton: FC<Props> = ({ children }) => {
     <div>
       <button
         type="button"
-        className="bg-violet-600 text-white py-2 px-4 font-display font-semibold hover:bg-violet-500 text-sm capitalize">
+        className="bg-violet-600 text-white py-2 px-4 font-display font-semibold hover:bg-violet-500 text-sm capitalize flex items-center">
         {children}
       </button>
     </div>

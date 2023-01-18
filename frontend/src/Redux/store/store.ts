@@ -1,5 +1,4 @@
 import { configureStore, ThunkAction } from "@reduxjs/toolkit";
-import productReducer from "../reducer/products";
 import { Action } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import cartReducer from "../reducer/cartSlice";
@@ -10,7 +9,6 @@ import wishListeReducer from "../reducer/wishListSlice";
 const makeStore = () =>
   configureStore({
     reducer: {
-      product: productReducer,
       cart: cartReducer,
       auth: authReducer,
       [productApi.reducerPath]: productApi.reducer,

@@ -44,7 +44,7 @@
 }
 
 .submitButton {
-  @apply bg-violet-600 w-[40%] text-white py-3 my-6 font-display uppercase font-semibold hover:bg-violet-500;
+  @apply bg-violet-600 w-full text-white py-3 my-3 font-display uppercase font-semibold hover:bg-violet-500;
 }
 
 .adminUploadInput {

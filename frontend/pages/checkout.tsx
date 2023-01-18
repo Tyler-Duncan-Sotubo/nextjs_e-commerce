@@ -3,6 +3,7 @@ import Layout from "@/components/Layout/Layout";
 import { useSelector, useDispatch } from "react-redux";
 import { cartSelector, getTotals } from "@/Redux/reducer/cartSlice";
 import BillingForm from "@/components/Form/BillingForm";
+import { getFromLocalStorage } from "@/Helpers/useLocalStorage";
 
 const Checkout: FC = () => {
   const cartItems = useSelector(cartSelector);
@@ -11,6 +12,7 @@ const Checkout: FC = () => {
 
   useEffect(() => {
     dispatch(getTotals());
+    getFromLocalStorage("cartItems");
   }, [cartItems, dispatch]);
 
   let shipping = 100;
@@ -29,16 +31,14 @@ const Checkout: FC = () => {
                 <h3 className="chechouth3">Product</h3>
                 <h3 className="chechouth3">Total</h3>
               </div>
-              <div className="mb-3 border-b-[1px] border-b-gray-500 py-0.5">
-                {cartItems.cartItem.map((item, index) => (
-                  <div key={index} className="flex justify-between mb-2">
-                    <p className="checkoutp mb-2">
-                      {item.name} x {item.cartQuantity}
-                    </p>
-                    <p className="checkoutp mb-2">{item.price}</p>
-                  </div>
-                ))}
-              </div>
+              {cart.map((item, index) => (
+                <div key={index} className="flex justify-between mb-2">
+                  <p className="checkoutp mb-2">
+                    {item.name} x {item.cartQuantity}
+                  </p>
+                  <p className="checkoutp mb-2">{item.price}</p>
+                </div>
+              ))}
 
               <div className="checkoutTb">
                 <p className="checkoutp">SubTotal</p>
