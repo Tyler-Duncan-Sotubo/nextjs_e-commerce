@@ -1,12 +1,10 @@
 import React, { FC, useEffect } from "react";
-import Layout from "../components/Layout";
+import Layout from "@/components/Layout/Layout";
 import { useSelector, useDispatch } from "react-redux";
-import { cartSelector, getTotals } from "../redux/reducer/cartSlice";
-import BillingForm from "../modules/BillingForm";
+import { cartSelector, getTotals } from "@/Redux/reducer/cartSlice";
+import BillingForm from "@/components/Form/BillingForm";
 
-interface Props {}
-
-const Checkout: FC<Props> = () => {
+const Checkout: FC = () => {
   const cartItems = useSelector(cartSelector);
   const cart = cartItems.cartItem;
   const dispatch = useDispatch();

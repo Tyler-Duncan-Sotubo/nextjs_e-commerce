@@ -2,7 +2,7 @@ import React, { FC, useEffect } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
-import Layout from "../components/Layout";
+import Layout from "@components/Layout/Layout";
 import { useSelector } from "react-redux";
 import {
   addToCart,
@@ -11,7 +11,7 @@ import {
   decreaseCart,
   clearCart,
   getTotals,
-} from "../redux/reducer/cartSlice";
+} from "@/Redux/reducer/cartSlice";
 import {
   HiPlus,
   HiMinus,
@@ -20,7 +20,7 @@ import {
 } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { MdClose } from "react-icons/md";
-import { authSelector } from "../redux/reducer/AuthSlice";
+import { authSelector } from "@/Redux/reducer/AuthSlice";
 
 type Props = {};
 

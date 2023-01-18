@@ -1,11 +1,11 @@
-import Layout from "../components/Layout";
-import { Slider } from "../components/Slider";
+import Layout from "@/components/Layout/Layout";
+import { Slider } from "@components/Slider";
 import axios from "axios";
-import { wrapper } from "../redux/store/store";
-import { setProductData, getProductSelector } from "../redux/reducer/products";
+import { wrapper } from "@/Redux/store/store";
+import { setProductData, getProductSelector } from "@/Redux/reducer/products";
 import { useSelector } from "react-redux";
-import AllProducts from "../components/AllProducts";
-import { url } from "../redux/reducer/api";
+import AllProducts from "@components/AllProducts";
+import { url } from "@/Redux/reducer/api";
 
 export default function Home() {
   const { products } = useSelector(getProductSelector);

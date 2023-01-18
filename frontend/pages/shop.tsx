@@ -1,33 +1,19 @@
 import React, { FC, useState } from "react";
-import Layout from "../components/Layout";
+import Layout from "@components/Layout/Layout";
 import axios from "axios";
-import { wrapper } from "../redux/store/store";
-import { setProductData, getProductSelector } from "../redux/reducer/products";
+import { wrapper } from "@/Redux/store/store";
+import { setProductData, getProductSelector } from "@/Redux/reducer/products";
 import { useSelector } from "react-redux";
 import { BsFillGrid3X3GapFill, BsListUl } from "react-icons/bs";
-import ProductList from "../components/ProductList";
+import ProductList from "@components/ProductList";
+import { IProduct } from "@/lib/interfaces/IProduct";
 
-interface Props {
-  data: [];
-}
-
-type Data = [
-  {
-    name: string;
-    slug: string;
-    image: string;
-    brand: string;
-    price: number;
-    description: string;
-  }
-];
-
-const Shop: FC<Props> = () => {
+const Shop: FC = () => {
   const { products } = useSelector(getProductSelector);
   const { product } = products;
   const data = product.products;
 
-  const [filterdata, setFilteredData] = useState<Data>(data);
+  const [filterdata, setFilteredData] = useState<[IProduct]>(data);
   const [changeView, setChangeView] = useState<boolean>(false);
   const [isActive, setisActive] = useState<string>("active");
   const [listActive, setListActive] = useState<string>("active");

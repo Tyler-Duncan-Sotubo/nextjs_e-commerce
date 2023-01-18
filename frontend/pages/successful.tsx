@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import Layout from "../components/Layout";
+import Layout from "../src/components/Layout/Layout";
 import { useDispatch } from "react-redux";
-import { clearCart } from "../redux/reducer/cartSlice";
+import { clearCart } from "../src/Redux/reducer/cartSlice";
 
 const Success = () => {
   const dispatch = useDispatch();

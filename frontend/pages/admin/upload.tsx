@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import AdminLayout from "../../components/Admin/AdminLayout";
-import UploadForm from "../../components/Admin/UploadForm";
+import AdminLayout from "@components/Layout/AdminLayout";
+import UploadForm from "@components/Form/UploadForm";
 
 const Upload: FC = () => {
   return (

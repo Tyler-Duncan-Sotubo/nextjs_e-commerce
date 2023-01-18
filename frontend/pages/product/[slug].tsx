@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { FC } from "react";
-import Layout from "../../components/Layout";
+import Layout from "../../src/components/Layout/Layout";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../redux/reducer/cartSlice";
+import { addToCart } from "../../src/Redux/reducer/cartSlice";
 import axios from "axios";
 
 interface Product {

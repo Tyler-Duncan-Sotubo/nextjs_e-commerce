@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
-import AdminLayout from "../../components/Admin/AdminLayout";
-import RoundeButton from "../../modules/RoundeButton";
-import SearchInput from "../../modules/SearchInput";
+import AdminLayout from "@components/Layout/AdminLayout";
+import RoundeButton from "@components/UI/RoundeButton";
+import SearchInput from "@components/UI/SearchInput";
 import { BsPlus } from "react-icons/bs";
 import {
   MdOutlineSort,
@@ -10,18 +10,9 @@ import {
 } from "react-icons/md";
 import Link from "next/link";
 import { useSelector } from "react-redux";
-import { getProductSelector } from "../../redux/reducer/products";
+import { getProductSelector } from "@/Redux/reducer/products";
 import Image from "next/image";
-
-interface Product {
-  name: string;
-  slug: string;
-  image: string;
-  brand: string;
-  price: number;
-  description: string;
-  countInStock: string;
-}
+import { IProduct } from "@/lib/interfaces/IProduct";
 
 const Products: FC = () => {
   const { products } = useSelector(getProductSelector);
@@ -97,7 +88,7 @@ const Products: FC = () => {
             </thead>
             <tbody>
               {pageProducts &&
-                pageProducts.map((product: Product, index: number) => (
+                pageProducts.map((product: IProduct, index: number) => (
                   <>
                     <tr
                       key={index}

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import Layout from "../components/Layout";
-import LoginForm from "../components//Auth/LoginForm";
-import RegisterForm from "../components/Auth/RegisterForm";
+import Layout from "@components/Layout/Layout";
+import LoginForm from "@components/Form/LoginForm";
+import RegisterForm from "@components/Form/RegisterForm";
 
 const Login: FC = () => {
   return (

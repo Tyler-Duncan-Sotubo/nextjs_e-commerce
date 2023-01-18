@@ -1,12 +1,12 @@
 import "../styles/globals.css";
 import { useEffect, useState } from "react";
 import type { AppProps } from "next/app";
-import { wrapper } from "../redux/store/store";
+import { wrapper } from "../src/Redux/store/store";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { getTotals, cartSelector } from "../redux/reducer/cartSlice";
-import { getUser } from "../redux/reducer/AuthSlice";
+import { getTotals, cartSelector } from "../src/Redux/reducer/cartSlice";
+import { getUser } from "../src/Redux/reducer/AuthSlice";
 
 function App({ Component, pageProps }: AppProps) {
   const dispatch = useDispatch();
