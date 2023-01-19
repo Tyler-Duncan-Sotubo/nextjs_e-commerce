@@ -12,6 +12,7 @@ const initialState: AuthState = {
   name: "",
   email: "",
   _id: "",
+  isAdmin: false,
   registerStatus: "",
   registerError: "",
   loginStatus: "",
@@ -27,6 +28,7 @@ export const registerUser = createAsyncThunk(
         name: user.name,
         password: user.password,
         email: user.email,
+        isAdmin: user.isAdmin,
       });
       localStorage.setItem("token", token.data);
       return token.data;
@@ -67,6 +69,7 @@ const authReducer = createSlice({
           name: user.name,
           email: user.email,
           _id: user._id,
+          isAdmin: user.isAdmin,
           userLoaded: true,
         };
       }
@@ -103,6 +106,7 @@ const authReducer = createSlice({
           email: user.email,
           _id: user._id,
           registerStatus: "success",
+          isAdmin: user.isAdmin,
         };
       } else return state;
     });

@@ -23,6 +23,8 @@ export const Nav: FC<Props> = ({ setModalVisible, setOpenWishList }) => {
   const auth = useSelector(authSelector);
   const dispatch = useDispatch()<any>;
 
+  console.log(auth);
+
   return (
     <nav>
       <div className="md:block hidden">

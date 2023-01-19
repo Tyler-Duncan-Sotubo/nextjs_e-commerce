@@ -2,6 +2,7 @@ export interface User {
   name: string;
   email: string;
   password: string;
+  isAdmin: boolean;
 }
 
 export interface LoginUser {
@@ -13,6 +14,7 @@ export interface UserRegisterForm {
   email: string;
   password: string;
   name: string;
+  isAdmin: boolean;
 }
 
 export interface UserLoginForm {

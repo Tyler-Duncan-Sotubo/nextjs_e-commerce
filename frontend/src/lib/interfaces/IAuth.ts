@@ -8,4 +8,5 @@ export interface AuthState {
   loginStatus: string;
   loginError: string;
   userLoaded: false;
+  isAdmin: false;
 }

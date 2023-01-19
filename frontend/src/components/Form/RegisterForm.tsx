@@ -28,6 +28,8 @@ const RegisterForm = () => {
 
   const onSubmit = (data: UserRegisterForm) => {
     dispatch(registerUser(data));
+
+    console.log(data);
   };
 
   return (
@@ -79,6 +81,21 @@ const RegisterForm = () => {
           {errors.password && (
             <div className="text-red-500 text-left mt-3">
               {errors.password.message}
+            </div>
+          )}
+        </div>
+        <div className="mb-8">
+          <input
+            type="checkbox"
+            id="isAdmin"
+            className="input"
+            autoFocus
+            placeholder="password"
+            {...register("isAdmin")}></input>
+          <span>Is The User An Admin</span>
+          {errors.isAdmin && (
+            <div className="text-red-500 text-left mt-3">
+              {errors.isAdmin.message}
             </div>
           )}
         </div>

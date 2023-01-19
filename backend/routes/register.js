@@ -11,6 +11,7 @@ router.post("/", async (req, res) => {
     name: joi.string().min(3).max(40).required(),
     email: joi.string().min(6).max(40).required().email(),
     password: joi.string().min(6).max(1024).required(),
+    isAdmin: joi.boolean().required(),
   });
   const { error } = schema.validate(req.body);
 
@@ -22,6 +23,7 @@ router.post("/", async (req, res) => {
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
+    isAdmin: req.body.isAdmin,
   });
 
   const salt = await bcrypt.genSalt(10);
