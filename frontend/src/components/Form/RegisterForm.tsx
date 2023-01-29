@@ -28,8 +28,6 @@ const RegisterForm = () => {
 
   const onSubmit = (data: UserRegisterForm) => {
     dispatch(registerUser(data));
-
-    console.log(data);
   };
 
   return (
@@ -85,6 +83,10 @@ const RegisterForm = () => {
           )}
         </div>
         <div className="mb-8">
+          <select {...register("isAdmin")}>
+            <option value=""></option>
+            <option value=""></option>
+          </select>
           <input
             type="checkbox"
             id="isAdmin"

@@ -7,6 +7,6 @@ export interface AuthState {
   registerError: string;
   loginStatus: string;
   loginError: string;
-  userLoaded: false;
-  isAdmin: false;
+  userLoaded: boolean;
+  isAdmin: boolean;
 }

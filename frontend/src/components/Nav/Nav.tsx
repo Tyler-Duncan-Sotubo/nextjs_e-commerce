@@ -23,7 +23,7 @@ export const Nav: FC<Props> = ({ setModalVisible, setOpenWishList }) => {
   const auth = useSelector(authSelector);
   const dispatch = useDispatch()<any>;
 
-  console.log(auth);
+  console.log(auth.isAdmin);
 
   return (
     <nav>
@@ -50,13 +50,6 @@ export const Nav: FC<Props> = ({ setModalVisible, setOpenWishList }) => {
               className="flex cursor-pointer relative"
               onClick={() => setOpenWishList(true)}>
               <FaRegHeart className="cursor-pointer mr-1" size={18} />
-              <div className="absolute top-[-5px] right-[-15px] bg-red-600 w-4 rounded-[50%] text-center">
-                {wishListCount.items.length > 0 ? (
-                  <p className="text-xs font-bold text-white">
-                    {wishListCount.items.length}
-                  </p>
-                ) : null}
-              </div>
             </div>
             <div
               onClick={() => setModalVisible(true)}
